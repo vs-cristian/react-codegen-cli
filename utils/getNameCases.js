@@ -6,7 +6,6 @@ function getNameCases(name) {
     pascalCase: _.upperFirst(_.camelCase(name)),
     snakeCase: _.snakeCase(name),
     snakeUpperCase: _.snakeCase(name).toUpperCase(),
-    constantCase: _.snakeCase(name),
     kebabCase: _.kebabCase(name),
   };
 }
