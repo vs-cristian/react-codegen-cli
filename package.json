@@ -1,0 +1,34 @@
+{
+  "name": "react-codegen-cli",
+  "version": "0.1.0",
+  "description": "Software Development Kit for React",
+  "main": "index.js",
+  "bin": {
+    "react-codegen": "index.js"
+  },
+  "keywords": [
+    "react",
+    "React CLI",
+    "devkit",
+    "sdk",
+    "Reacg DevKit"
+  ],
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "fs-extra": "^9.0.0",
+    "inquirer": "^7.1.0",
+    "lodash": "^4.17.15",
+    "log-symbols": "^4.0.0",
+    "mustache": "^4.0.1",
+    "prettier": "^2.0.5"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.1",
+    "@types/inquirer": "^6.5.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vasiliev Cristian",
+  "license": "MIT"
+}

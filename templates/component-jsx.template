@@ -1,0 +1,21 @@
+import React from 'react';
+{{#propTypes}}
+import propTypes from 'prop-types';
+{{/propTypes}}
+import './{{ fileName }}.style.{{ ext.style }}';
+
+export const {{ componentName.pascalCase }} = props => {
+{{#useState}}
+  const [state, setState] = React.useState({});
+
+{{/useState}}
+{{#useEffect}}
+  React.useEffect(() => {}, []);
+
+{{/useEffect}}
+  return <div></div>;
+};
+{{#propTypes}}
+
+{{ componentName.pascalCase }}.propTypes = {};
+{{/propTypes}}

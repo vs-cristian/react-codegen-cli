@@ -1,0 +1,7 @@
+{
+  "styles": "scss",
+  "typescript": false,
+  "jsxExt": true,
+  "fileNameCase": "pascal",
+  "path": "src/components"
+}
