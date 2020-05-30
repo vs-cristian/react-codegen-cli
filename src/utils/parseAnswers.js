@@ -1,4 +1,4 @@
-function parseAnswers(data) {
+export function parseAnswers(data) {
   return Object.entries(data).reduce((acc, [key, value]) => {
     if (Array.isArray(value)) {
       value.forEach(v => {
@@ -10,7 +10,3 @@ function parseAnswers(data) {
     return acc;
   }, {});
 }
-
-module.exports = {
-  parseAnswers,
-};

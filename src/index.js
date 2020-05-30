@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-const inquirer = require('inquirer');
+import inquirer from 'inquirer';
 
-const { FileService } = require('./core/FileService');
-const { TemplateService } = require('./core/TemplateService');
-const { parseAnswers, getQuestions, getVariables } = require('./utils');
+import { FileService } from './core/FileService';
+import { TemplateService } from './core/TemplateService';
+import { getQuestions, getVariables, parseAnswers } from './utils';
 
 inquirer
   .prompt(getQuestions())

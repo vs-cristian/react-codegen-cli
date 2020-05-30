@@ -1,6 +1,6 @@
-const { CONFIG } = require('../constants');
+import { CONFIG } from '../constants';
 
-function getQuestions() {
+export function getQuestions() {
   const modsChoices = ['useState', 'useEffect'];
   if (!CONFIG.typescript) modsChoices.push('propTypes');
 
@@ -23,7 +23,3 @@ function getQuestions() {
     },
   ];
 }
-
-module.exports = {
-  getQuestions,
-};

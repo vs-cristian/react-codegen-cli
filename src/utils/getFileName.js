@@ -1,12 +1,12 @@
-const chalk = require('chalk');
-const logSymbols = require('log-symbols');
+import logSymbols from 'log-symbols';
+import chalk from 'chalk';
 
-const { CONFIG } = require('../constants');
+import { CONFIG } from '../constants';
 
 let warned = false;
 
-function getFileName() {
-  const name = this.componentName[CONFIG.fileNameCase + 'Case'];
+export function getFileName() {
+  const name = this.componentName[`${CONFIG.fileNameCase}Case`];
 
   if (!name) {
     if (!warned) {
@@ -23,7 +23,3 @@ function getFileName() {
 
   return name;
 }
-
-module.exports = {
-  getFileName,
-};

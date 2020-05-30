@@ -1,11 +1,11 @@
-const fs = require('fs-extra');
-const chalk = require('chalk');
-const path = require('path');
-const logSymbols = require('log-symbols');
+import fs from 'fs-extra';
+import chalk from 'chalk';
+import path from 'path';
+import logSymbols from 'log-symbols';
 
-const { EXT, CONFIG } = require('../constants');
+import { CONFIG, EXT } from '../constants';
 
-class FileService {
+export class FileService {
   constructor(fileName) {
     this.fileName = fileName;
     this.dirPath = path.join(CONFIG.path, this.fileName);
@@ -59,7 +59,3 @@ class FileService {
     }
   }
 }
-
-module.exports = {
-  FileService,
-};

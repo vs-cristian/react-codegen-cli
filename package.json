@@ -1,19 +1,32 @@
 {
   "name": "react-codegen-cli",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Software Development Kit for React",
-  "main": "index.js",
+  "main": "lib/index.js",
   "bin": {
-    "react-codegen": "index.js"
+    "react-codegen": "lib/index.js"
   },
-  "keywords": [
-    "react",
-    "React CLI",
-    "devkit",
-    "sdk",
-    "Reacg DevKit"
-  ],
+  "scripts": {
+    "prepublish": "babel src --out-dir lib --copy-files",
+    "watch": "babel --watch src --out-dir lib --source-maps inline --copy-files",
+    "lint": "eslint src --ext .js"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "exclude": [
+            "transform-regenerator"
+          ]
+        }
+      ]
+    ]
+  },
   "dependencies": {
+    "@babel/generator": "^7.10.1",
+    "@babel/parser": "^7.10.1",
+    "@babel/traverse": "^7.10.1",
     "chalk": "^4.0.0",
     "fs-extra": "^9.0.0",
     "inquirer": "^7.1.0",
@@ -23,13 +36,26 @@
     "prettier": "^2.0.5"
   },
   "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.1",
+    "@babel/preset-env": "^7.10.1",
+    "@types/babel-traverse": "^6.25.5",
     "@types/fs-extra": "^9.0.1",
-    "@types/inquirer": "^6.5.0"
+    "@types/inquirer": "^6.5.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2"
   },
+  "keywords": [
+    "react",
+    "React CLI",
+    "React CodeGen",
+    "devkit",
+    "sdk",
+    "React DevKit"
+  ],
   "repository": "https://github.com/Cristians953/react-codegen-cli.git",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Vasiliev Cristian",
   "license": "MIT"
 }

@@ -35,7 +35,7 @@ you can enter the name of the component and configure the generation of the file
 When creating a react component, you are given the choice to modificate the component parts,
 such as connecting the `useState`, `useEffect`, `propTypes` and so on.
 
-![Demo](assets/demo.png)
+![Demo](https://i.imgur.com/MVFvUq5.png)
 
 ## Configration file
  
@@ -63,4 +63,4 @@ Example:
 
 ## License
 
-Generate React CLI is open source software [licensed as MIT](https://github.com/cristians953/react-codegen/blob/master/LICENSE).
+React CodeGen CLI is open source software [licensed as MIT](https://github.com/cristians953/react-codegen/blob/master/LICENSE).
