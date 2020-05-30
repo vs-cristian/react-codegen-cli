@@ -1,10 +1,10 @@
-const fs = require('fs-extra');
-const path = require('path');
-const Mustache = require('mustache');
+import path from 'path';
+import fs from 'fs-extra';
+import Mustache from 'mustache';
 
-const { EXT, ROOT } = require('../constants');
+import { EXT, ROOT } from '../constants';
 
-class TemplateService {
+export class TemplateService {
   constructor(variables) {
     this.variables = variables;
     this.parse = this.parse.bind(this);
@@ -31,7 +31,3 @@ class TemplateService {
     return fs.readFile(filePath, 'utf8').then(this.parse);
   }
 }
-
-module.exports = {
-  TemplateService,
-};

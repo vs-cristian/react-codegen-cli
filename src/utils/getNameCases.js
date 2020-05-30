@@ -1,6 +1,6 @@
-const _ = require('lodash');
+import _ from 'lodash';
 
-function getNameCases(name) {
+export function getNameCases(name) {
   return {
     camelCase: _.camelCase(name),
     pascalCase: _.upperFirst(_.camelCase(name)),
@@ -9,7 +9,3 @@ function getNameCases(name) {
     kebabCase: _.kebabCase(name),
   };
 }
-
-module.exports = {
-  getNameCases,
-};
