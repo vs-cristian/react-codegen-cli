@@ -8,7 +8,8 @@ import { CONFIG, EXT } from '../constants';
 export class FileService {
   constructor(fileName) {
     this.fileName = fileName;
-    this.dirPath = path.join(CONFIG.path, this.fileName);
+    this.dirPath = path.resolve(CONFIG.path, this.fileName);
+    console.log(fileName, CONFIG.path);
   }
 
   getFilePath(ext, type) {
@@ -20,10 +21,10 @@ export class FileService {
     return fs.mkdirp(this.dirPath);
   }
 
-  async genJs(template) {
+  genJs(template) {
     const filePath = this.getFilePath(EXT.component);
-    if (!(await fs.pathExists(filePath))) {
-      await fs.writeFile(filePath, template);
+    if (!fs.pathExistsSync(filePath)) {
+      fs.writeFileSync(filePath, template);
       console.log(
         logSymbols.success,
         chalk.green(`Successfully generated component file ${chalk.white(filePath)}`)
@@ -33,10 +34,10 @@ export class FileService {
     }
   }
 
-  async genStyle(template) {
+  genStyle(template) {
     const filePath = this.getFilePath(EXT.style, 'style');
-    if (!(await fs.pathExists(filePath))) {
-      await fs.writeFile(filePath, template);
+    if (!fs.pathExistsSync(filePath)) {
+      fs.writeFileSync(filePath, template);
       console.log(
         logSymbols.success,
         chalk.green(`Successfully generated style file ${chalk.white(filePath)}`)
@@ -46,10 +47,10 @@ export class FileService {
     }
   }
 
-  async genTest(template) {
+  genTest(template) {
     const filePath = this.getFilePath(EXT.component, 'test');
-    if (!(await fs.pathExists(filePath))) {
-      await fs.writeFile(filePath, template);
+    if (!fs.pathExistsSync(filePath)) {
+      fs.writeFileSync(filePath, template);
       console.log(
         logSymbols.success,
         chalk.green(`Successfully generated test file ${chalk.white(filePath)}`)

@@ -1,6 +1,6 @@
 {
   "name": "react-codegen-cli",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Software Development Kit for React",
   "main": "lib/index.js",
   "bin": {
@@ -10,6 +10,12 @@
     "prepublish": "babel src --out-dir lib --copy-files",
     "watch": "babel --watch src --out-dir lib --source-maps inline --copy-files",
     "lint": "eslint src --ext .js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint"
+    }
   },
   "babel": {
     "presets": [
@@ -26,8 +32,12 @@
   "dependencies": {
     "@babel/generator": "^7.10.1",
     "@babel/parser": "^7.10.1",
+    "@babel/template": "^7.10.1",
     "@babel/traverse": "^7.10.1",
+    "@babel/types": "^7.10.1",
     "chalk": "^4.0.0",
+    "cosmiconfig": "^6.0.0",
+    "find-up": "^4.1.0",
     "fs-extra": "^9.0.0",
     "inquirer": "^7.1.0",
     "lodash": "^4.17.15",
@@ -40,12 +50,14 @@
     "@babel/core": "^7.10.1",
     "@babel/preset-env": "^7.10.1",
     "@types/babel-traverse": "^6.25.5",
+    "@types/babel-types": "^7.0.7",
     "@types/fs-extra": "^9.0.1",
     "@types/inquirer": "^6.5.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-import": "^2.20.2"
+    "eslint-plugin-import": "^2.20.2",
+    "husky": "^4.2.5"
   },
   "keywords": [
     "react",
@@ -56,6 +68,6 @@
     "React DevKit"
   ],
   "repository": "https://github.com/Cristians953/react-codegen-cli.git",
-  "author": "Vasiliev Cristian",
+  "author": "Vasiliev Cristian <vasiliev.cristian99@gmail.com>",
   "license": "MIT"
 }
