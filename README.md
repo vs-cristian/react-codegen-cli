@@ -47,6 +47,8 @@ React codegen uses  [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) 
 
 The configuration file will be resolved in the root folder of the project. If no configuration file found the default config will be used.
 
+### Configuration Options
+
 |     Type     |                             Value                            |     Default    |                              Description                             |
 |:------------:|:------------------------------------------------------------:|:--------------:|----------------------------------------------------------------------|
 | styles       |                            string                            |      scss      | Extension for style file                                             |
