@@ -1,9 +1,8 @@
 import fs from 'fs-extra';
-import chalk from 'chalk';
 import path from 'path';
-import logSymbols from 'log-symbols';
 
 import { CONFIG, EXT } from '../constants';
+import { Logger } from './Logger';
 
 export class FileService {
   constructor(fileName) {
@@ -25,12 +24,9 @@ export class FileService {
     const filePath = this.getFilePath(EXT.component);
     if (!fs.pathExistsSync(filePath)) {
       fs.writeFileSync(filePath, template);
-      console.log(
-        logSymbols.success,
-        chalk.green(`Successfully generated component file ${chalk.white(filePath)}`)
-      );
+      Logger.success(chalk => `Successfully generated component file ${chalk.white(filePath)}`);
     } else {
-      console.log(logSymbols.warning, chalk.yellow(`File already exists ${chalk.white(filePath)}`));
+      Logger.warn(chalk => `File already exists ${chalk.white(filePath)}`);
     }
   }
 
@@ -38,12 +34,9 @@ export class FileService {
     const filePath = this.getFilePath(EXT.style, 'style');
     if (!fs.pathExistsSync(filePath)) {
       fs.writeFileSync(filePath, template);
-      console.log(
-        logSymbols.success,
-        chalk.green(`Successfully generated style file ${chalk.white(filePath)}`)
-      );
+      Logger.success(chalk => `Successfully generated style file ${chalk.white(filePath)}`);
     } else {
-      console.log(logSymbols.warning, chalk.yellow(`File already exists ${chalk.white(filePath)}`));
+      Logger.warn(chalk => `File already exists ${chalk.white(filePath)}`);
     }
   }
 
@@ -51,12 +44,9 @@ export class FileService {
     const filePath = this.getFilePath(EXT.component, 'test');
     if (!fs.pathExistsSync(filePath)) {
       fs.writeFileSync(filePath, template);
-      console.log(
-        logSymbols.success,
-        chalk.green(`Successfully generated test file ${chalk.white(filePath)}`)
-      );
+      Logger.success(chalk => `Successfully generated test file ${chalk.white(filePath)}`);
     } else {
-      console.log(logSymbols.warning, chalk.yellow(`File already exists ${chalk.white(filePath)}`));
+      Logger.warn(chalk => `File already exists ${chalk.white(filePath)}`);
     }
   }
 }

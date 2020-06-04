@@ -9,7 +9,7 @@ import { getQuestions, getVariables, parseAnswers } from './utils';
 inquirer
   .prompt(getQuestions())
   .then(async answers => {
-    console.log();
+    process.stdout.write('\n');
     const data = parseAnswers(answers);
     const variables = getVariables(data);
 
@@ -22,6 +22,6 @@ inquirer
     if (answers.test) {
       await fileService.genTest(await templateService.getTestTemplate());
     }
-    console.log();
+    process.stdout.write('\n');
   })
   .catch(console.error);

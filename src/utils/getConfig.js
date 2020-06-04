@@ -8,7 +8,7 @@ export function getConfig() {
   let config = defaultConfig;
 
   const explorer = cosmiconfigSync('react-codegen');
-  const { config: userConfig } = explorer.search(APP_ROOT);
+  const { config: userConfig } = explorer.search(APP_ROOT) || {};
 
   if (userConfig) {
     config = Object.assign(config, userConfig);
