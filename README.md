@@ -35,7 +35,7 @@ you can enter the name of the component and configure the generation of the file
 When creating a React component, you are given the choice to modify the component parts,
 such as connecting the `useState`, `useEffect`, `propTypes` and so on.
 
-![Demo](https://i.imgur.com/MVFvUq5.png)
+![Demo](https://i.imgur.com/TFykAL4.png)
 
 ## Configuration file
  
