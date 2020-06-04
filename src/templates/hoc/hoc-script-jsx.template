@@ -1,0 +1,17 @@
+import React from 'react';
+
+export function {{ componentName.pascalCase }}(WrappedComponent) {
+  return props => {
+    {{#useState}}
+    const [state, setState] = React.useState({});
+
+    {{/useState}}
+    {{#useEffect}}
+    React.useEffect(() => {
+
+    }, []);
+
+    {{/useEffect}}
+    return <WrappedComponent {...props} />
+  }
+}

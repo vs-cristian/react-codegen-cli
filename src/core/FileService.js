@@ -8,7 +8,6 @@ export class FileService {
   constructor(fileName) {
     this.fileName = fileName;
     this.dirPath = path.resolve(CONFIG.path, this.fileName);
-    console.log(fileName, CONFIG.path);
   }
 
   getFilePath(ext, type) {
@@ -17,7 +16,7 @@ export class FileService {
   }
 
   createDir() {
-    return fs.mkdirp(this.dirPath);
+    fs.mkdirpSync(this.dirPath);
   }
 
   genJs(template) {

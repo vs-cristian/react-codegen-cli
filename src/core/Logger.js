@@ -3,7 +3,7 @@ import logSymbols from 'log-symbols';
 
 export class Logger {
   static info(value) {
-    const log = v => this.log(v, 'blue', logSymbols.info);
+    const log = v => Logger.log(v, 'blue', logSymbols.info);
 
     if (typeof value === 'function') {
       return log(value(chalk));
@@ -12,7 +12,7 @@ export class Logger {
   }
 
   static success(value) {
-    const log = v => this.log(v, 'green', logSymbols.success);
+    const log = v => Logger.log(v, 'green', logSymbols.success);
 
     if (typeof value === 'function') {
       return log(value(chalk));
@@ -21,7 +21,7 @@ export class Logger {
   }
 
   static warn(value) {
-    const log = v => this.log(v, 'yellow', logSymbols.warning);
+    const log = v => Logger.log(v, 'yellow', logSymbols.warning);
 
     if (typeof value === 'function') {
       return log(value(chalk));
@@ -30,7 +30,7 @@ export class Logger {
   }
 
   static error(value) {
-    const log = v => this.log(v, 'red', logSymbols.error);
+    const log = v => Logger.log(v, 'red', logSymbols.error);
 
     if (typeof value === 'function') {
       return log(value(chalk));

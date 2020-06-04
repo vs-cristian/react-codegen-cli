@@ -4,6 +4,7 @@ env:
 extends:
   - airbnb-base
   - prettier
+#parser: babel
 globals:
   Atomics: readonly
   SharedArrayBuffer: readonly

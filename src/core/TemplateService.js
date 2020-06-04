@@ -3,31 +3,36 @@ import fs from 'fs-extra';
 import Mustache from 'mustache';
 
 import { EXT, ROOT } from '../constants';
+import { Logger } from './Logger';
 
 export class TemplateService {
   constructor(variables) {
     this.variables = variables;
-    this.parse = this.parse.bind(this);
   }
 
-  parse(template) {
-    return Mustache.render(template, this.variables);
+  static getExt(format) {
+    switch (format) {
+      case 'script':
+      case 'test':
+        return EXT.component === 'js' ? 'jsx' : EXT.component;
+      case 'style':
+        return 'css';
+      default:
+        Logger.error(`Unhandled format ${format}`);
+        return process.exit(1);
+    }
   }
 
-  getScriptTemplate() {
-    const ext = EXT.component === 'js' ? 'jsx' : EXT.component;
-    const filePath = path.resolve(ROOT, `templates/component-${ext}.template`);
-    return fs.readFile(filePath, 'utf8').then(this.parse);
-  }
+  getTemplate(format = 'script') {
+    const ext = TemplateService.getExt(format);
+    const { type } = this.variables;
 
-  getStyleTemplate() {
-    const filePath = path.resolve(ROOT, `templates/style-css.template`);
-    return fs.readFile(filePath, 'utf8').then(this.parse);
-  }
-
-  getTestTemplate() {
-    const ext = EXT.component === 'js' ? 'jsx' : EXT.component;
-    const filePath = path.resolve(ROOT, `templates/test-${ext}.template`);
-    return fs.readFile(filePath, 'utf8').then(this.parse);
+    const filePath = path.resolve(ROOT, `templates/${type}/${type}-${format}-${ext}.template`);
+    if (fs.pathExistsSync(filePath)) {
+      const template = fs.readFileSync(filePath, 'utf8');
+      return Mustache.render(template, this.variables);
+    }
+    Logger.warn(chalk => `Couldn't find "${format}" template at ${chalk.white(filePath)}`);
+    return '// Template not found';
   }
 }

@@ -1,20 +1,18 @@
-import logSymbols from 'log-symbols';
-import chalk from 'chalk';
-
 import { CONFIG } from '../constants';
+import { Logger } from '../core/Logger';
 
 let warned = false;
 
-export function getFileName() {
-  const name = this.componentName[`${CONFIG.fileNameCase}Case`];
+export function getFileName(type) {
+  let name = this.componentName[`${CONFIG.fileNameCase}Case`];
+  if (type === 'hoc') {
+    name = this.componentName.camelCase;
+  }
 
   if (!name) {
     if (!warned) {
-      console.log(
-        logSymbols.warning,
-        chalk.yellow(
-          `File name case "${CONFIG.fileNameCase}" is not supported. Using default "pascal"\n`
-        )
+      Logger.warn(
+        `File name case "${CONFIG.fileNameCase}" is not supported. Using default "pascal"\n`
       );
       warned = true;
     }

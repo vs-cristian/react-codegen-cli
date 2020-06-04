@@ -4,24 +4,34 @@ import inquirer from 'inquirer';
 
 import { FileService } from './core/FileService';
 import { TemplateService } from './core/TemplateService';
-import { getQuestions, getVariables, parseAnswers } from './utils';
+import { Logger } from './core/Logger';
+import { getVariables, parseAnswers } from './utils';
+import { getQuestions } from './questions/getQuestions';
+// import { type as typeQuestion } from './questions/questions';
 
+const type = 'component';
 inquirer
-  .prompt(getQuestions())
+  .prompt(getQuestions(type))
   .then(async answers => {
+    // const answers = await inquirer.prompt(getQuestions(type));
+
     process.stdout.write('\n');
-    const data = parseAnswers(answers);
+
+    const data = parseAnswers({ ...answers, type });
     const variables = getVariables(data);
 
-    const fileService = new FileService(variables.fileName());
+    const fileService = new FileService(variables.fileName(type));
     const templateService = new TemplateService(variables);
 
-    await fileService.createDir();
-    await fileService.genJs(await templateService.getScriptTemplate());
-    await fileService.genStyle(await templateService.getStyleTemplate());
-    if (answers.test) {
-      await fileService.genTest(await templateService.getTestTemplate());
+    fileService.createDir();
+    fileService.genJs(templateService.getTemplate());
+    if (data.type !== 'hoc') {
+      fileService.genStyle(templateService.getTemplate('style'));
     }
+    if (data.test) {
+      fileService.genTest(templateService.getTemplate('test'));
+    }
+
     process.stdout.write('\n');
   })
-  .catch(console.error);
+  .catch(Logger.error);
