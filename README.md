@@ -36,6 +36,7 @@ When creating a React component, you are given the choice to modify the componen
 such as connecting the `useState`, `useEffect`, `propTypes` and so on.
 
 ![Demo](https://i.imgur.com/TFykAL4.png)
+![Demo2](https://i.imgur.com/uEMSlCz.png)
 
 ## Configuration file
  
