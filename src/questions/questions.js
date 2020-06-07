@@ -18,6 +18,7 @@ export const name = genType => ({
   type: 'input',
   name: 'name',
   message: `${genType} name:`,
+  validate: str => str.length > 0,
 });
 
 export const test = {

@@ -1,8 +1,8 @@
 {
   "name": "react-codegen-cli",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Software Development Kit for React",
-  "main": "lib/index.js",
+  "main": "lib/bin.js",
   "bin": {
     "react-codegen": "lib/index.js"
   },
@@ -17,18 +17,6 @@
       "pre-push": "npm run lint"
     }
   },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "exclude": [
-            "transform-regenerator"
-          ]
-        }
-      ]
-    ]
-  },
   "dependencies": {
     "@babel/generator": "^7.10.1",
     "@babel/parser": "^7.10.1",
@@ -36,14 +24,17 @@
     "@babel/traverse": "^7.10.1",
     "@babel/types": "^7.10.1",
     "chalk": "^4.0.0",
+    "console-clear": "^1.1.1",
     "cosmiconfig": "^6.0.0",
+    "detect-indent": "^6.0.0",
     "find-up": "^4.1.0",
     "fs-extra": "^9.0.0",
     "inquirer": "^7.1.0",
     "lodash": "^4.17.15",
     "log-symbols": "^4.0.0",
     "mustache": "^4.0.1",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "yargs": "^15.3.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
@@ -53,6 +44,7 @@
     "@types/babel-types": "^7.0.7",
     "@types/fs-extra": "^9.0.1",
     "@types/inquirer": "^6.5.0",
+    "@types/yargs": "^15.0.5",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^6.11.0",

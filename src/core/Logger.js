@@ -39,6 +39,7 @@ export class Logger {
   }
 
   static log(value, color = 'white', icon) {
+    if (typeof value === 'function') value = value(chalk);
     if (icon) return console.log(icon, chalk[color](value));
     return console.log(chalk[color](value));
   }
