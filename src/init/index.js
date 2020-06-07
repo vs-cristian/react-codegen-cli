@@ -20,7 +20,7 @@ export async function init() {
   const answers = await inquirer.prompt(question);
 
   const config = {
-    styles: answers.styles,
+    styles: answers.styles.toLowerCase(),
     typescript: answers.typescript,
     jsxExt: answers.jsxExt,
     fileNameCase: answers.fileNameCase,
@@ -28,20 +28,20 @@ export async function init() {
   };
 
   const content = JSON.stringify(config, null, 2);
-  const filePath = path.resolve(APP_ROOT, 'react-codegen.json');
+  const filePath = path.resolve(APP_ROOT, '.react-codegenrc.json');
 
   fs.writeFileSync(filePath, content, 'utf-8');
 
   if (answers.script) {
     await updatePackage(answers.scriptName);
-  }
 
-  Logger.log(
-    chalk => `
+    Logger.log(
+      chalk => `
     Now you can run the following command
-    To run GraphQL Code Generator.
+    to run React CodeGen.
     
     ${chalk.cyan(`npm run ${answers.scriptName}`)}
     `
-  );
+    );
+  }
 }

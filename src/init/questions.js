@@ -1,3 +1,4 @@
+import { STYLE_FORMATS } from '../constants';
 import { getNameCases } from '../utils';
 
 const nameCases = getNameCases('my component');
@@ -14,7 +15,7 @@ export const question = [
     type: 'list',
     name: 'styles',
     message: 'Which stylesheet format would you like to use?',
-    choices: ['CSS', 'SCSS', 'SASS', 'Less', 'Stylus'],
+    choices: STYLE_FORMATS,
   },
   {
     type: 'confirm',

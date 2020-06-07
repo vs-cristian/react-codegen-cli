@@ -2,9 +2,9 @@
   "name": "react-codegen-cli",
   "version": "0.1.6",
   "description": "Software Development Kit for React",
-  "main": "lib/bin.js",
+  "main": "lib/index.js",
   "bin": {
-    "react-codegen": "lib/index.js"
+    "react-codegen": "lib/bin.js"
   },
   "scripts": {
     "prepublish": "babel src --out-dir lib --copy-files",
