@@ -1,9 +1,9 @@
 import path from 'path';
 
-import { getAppRoot, getConfig } from '../utils';
-import { getStylesExtension } from '../utils/getStylesExtension';
+import { getAppRoot, getConfig, getStylesExtension } from '../utils';
+import { StyleFormats } from '../types/types';
 
-export const STYLE_FORMATS = ['CSS', 'SCSS', 'SASS', 'Less', 'Stylus'];
+export const STYLE_FORMATS: StyleFormats[] = ['CSS', 'SCSS', 'SASS', 'Less', 'Stylus'];
 export const APP_ROOT = getAppRoot();
 export const ROOT = path.dirname(require.main.filename);
 export const CONFIG = getConfig();

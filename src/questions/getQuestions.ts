@@ -13,7 +13,7 @@ const hooks = [
 ];
 const mods = [];
 
-export function getQuestions(type) {
+export function getQuestions(type: string) {
   switch (type) {
     case 'component': {
       if (!CONFIG.typescript) mods.push('propTypes');

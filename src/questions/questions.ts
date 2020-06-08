@@ -14,11 +14,11 @@ export const type = {
   ],
 };
 
-export const name = genType => ({
+export const name = (genType: string) => ({
   type: 'input',
   name: 'name',
   message: `${genType} name:`,
-  validate: str => str.length > 0,
+  validate: (str: string) => str.length > 0,
 });
 
 export const test = {

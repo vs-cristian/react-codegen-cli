@@ -1,3 +1,5 @@
+import { IGenAnswers } from '../types/types';
+
 export function parseAnswers(data) {
   return Object.entries(data).reduce((acc, [key, value]) => {
     if (Array.isArray(value)) {
@@ -8,5 +10,5 @@ export function parseAnswers(data) {
       acc[key] = value;
     }
     return acc;
-  }, {});
+  }, {} as IGenAnswers);
 }

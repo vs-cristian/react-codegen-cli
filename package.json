@@ -7,9 +7,10 @@
     "react-codegen": "lib/bin.js"
   },
   "scripts": {
-    "prepublish": "babel src --out-dir lib --copy-files",
-    "watch": "babel --watch src --out-dir lib --source-maps inline --copy-files",
-    "lint": "eslint src --ext .js"
+    "prepublish": "npm run build",
+    "build": "babel src --out-dir lib --copy-files --extensions \".ts\"",
+    "watch": "npm run build -- --watch --source-maps inline",
+    "lint": "eslint src --ext .ts"
   },
   "husky": {
     "hooks": {
@@ -20,9 +21,9 @@
   "dependencies": {
     "@babel/generator": "^7.10.1",
     "@babel/parser": "^7.10.1",
-    "@babel/template": "^7.10.1",
     "@babel/traverse": "^7.10.1",
     "@babel/types": "^7.10.1",
+    "@babel/template": "^7.10.1",
     "chalk": "^4.0.0",
     "console-clear": "^1.1.1",
     "cosmiconfig": "^6.0.0",
@@ -40,16 +41,23 @@
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.1",
     "@babel/preset-env": "^7.10.1",
+    "@babel/preset-typescript": "^7.10.1",
+    "@types/babel-generator": "^6.25.3",
     "@types/babel-traverse": "^6.25.5",
     "@types/babel-types": "^7.0.7",
+    "@types/babel__generator": "^7.6.1",
     "@types/fs-extra": "^9.0.1",
     "@types/inquirer": "^6.5.0",
     "@types/yargs": "^15.0.5",
+    "@typescript-eslint/eslint-plugin": "^3.1.0",
+    "@typescript-eslint/parser": "^3.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-airbnb-typescript": "^8.0.2",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.20.2",
-    "husky": "^4.2.5"
+    "husky": "^4.2.5",
+    "typescript": "^3.9.5"
   },
   "keywords": [
     "react",

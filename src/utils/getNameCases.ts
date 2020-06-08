@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export function getNameCases(name) {
+export function getNameCases(name: string) {
   return {
     camelCase: _.camelCase(name),
     pascalCase: _.upperFirst(_.camelCase(name)),

@@ -9,7 +9,7 @@ import { init } from './init';
 
 const type = 'component';
 
-export async function runCLI(shouldInit) {
+export async function runCLI(shouldInit: boolean) {
   if (shouldInit) {
     await init();
     return;

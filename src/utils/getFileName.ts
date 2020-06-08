@@ -3,7 +3,7 @@ import { Logger } from '../core/Logger';
 
 let warned = false;
 
-export function getFileName(type) {
+export function getFileName(type: string) {
   let name = this.componentName[`${CONFIG.fileNameCase}Case`];
   if (type === 'hoc') {
     name = this.componentName.camelCase;

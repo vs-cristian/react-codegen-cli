@@ -4,11 +4,10 @@ import Mustache from 'mustache';
 
 import { EXT, ROOT } from '../constants';
 import { Logger } from './Logger';
+import { IGenAnswers } from '../types/types';
 
 export class TemplateService {
-  constructor(variables) {
-    this.variables = variables;
-  }
+  constructor(private variables: IGenAnswers) {}
 
   static getExt(format) {
     switch (format) {
