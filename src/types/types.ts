@@ -1,3 +1,5 @@
+import { EXT } from '../constants';
+
 export type StyleFormats = 'CSS' | 'SCSS' | 'SASS' | 'Less' | 'Stylus';
 export type FileNameCase = 'pascal' | 'camel' | 'kebab' | 'snake' | 'snakeUpper';
 
@@ -9,22 +11,28 @@ export interface IConfig {
   path: string;
 }
 
-export interface IGenAnswers {
+interface IBaseVariables {
+  componentName: string;
+  fileName: string;
+  ext: typeof EXT;
+}
+
+export interface IComponentVariables extends IBaseVariables {
   type: 'component' | 'hoc';
   name: string;
   test: boolean;
+  hooks: string[];
+  mods: string[];
+}
 
-  // Hooks
+export interface IHOCVariables extends IBaseVariables {
+  type: 'hoc';
+  name: string;
+  hooks: string[];
+}
 
-  useState: boolean;
-  useEffect: boolean;
-  useContext: boolean;
-  useReducer: boolean;
-  useRef: boolean;
-  useMemo: boolean;
-  useCallBack: boolean;
-
-  // Mods
-
-  propTypes: boolean;
+export interface IHookVariables extends IBaseVariables {
+  type: 'hook';
+  name: string;
+  hooks: string[];
 }

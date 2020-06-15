@@ -1,9 +1,0 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { {{  componentName.pascalCase }} } from './{{  fileName  }}';
-
-describe('{{ componentName.pascalCase }}', () => {
-  it('should render without crashing', () => {
-    const component = render(<{{ componentName.pascalCase }} />);
-  });
-});

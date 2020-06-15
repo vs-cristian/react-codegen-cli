@@ -1,13 +1,10 @@
 import inquirer from 'inquirer';
 
-import { FileService } from './core/FileService';
-import { TemplateService } from './core/TemplateService';
-import { getVariables, parseAnswers } from './utils';
-import { getQuestions } from './questions/getQuestions';
 import { init } from './init';
-// import { type as typeQuestion } from './questions/questions';
-
-const type = 'component';
+import { Logger } from './core/Logger';
+import * as questionTypes from './questions/questionTypes';
+import { type as typeQuestion } from './questions/questions';
+import { FileGenerateManager } from './core/FileGenerateManager';
 
 export async function runCLI(shouldInit: boolean) {
   if (shouldInit) {
@@ -15,22 +12,29 @@ export async function runCLI(shouldInit: boolean) {
     return;
   }
 
-  const answers = await inquirer.prompt(getQuestions(type));
+  const { type } = await inquirer.prompt(typeQuestion as any);
+
   process.stdout.write('\n');
 
-  const data = parseAnswers({ ...answers, type });
-  const variables = getVariables(data);
-
-  const fileService = new FileService(variables.fileName(type));
-  const templateService = new TemplateService(variables);
-
-  fileService.createDir();
-  fileService.genJs(templateService.getTemplate());
-  if (data.type !== 'hoc') {
-    fileService.genStyle(templateService.getTemplate('style'));
-  }
-  if (data.test) {
-    fileService.genTest(templateService.getTemplate('test'));
+  switch (type) {
+    case 'component': {
+      const answers = await inquirer.prompt(questionTypes.getComponentQuestions());
+      await FileGenerateManager.generateComponent(answers);
+      break;
+    }
+    case 'hoc': {
+      const answers = await inquirer.prompt(questionTypes.getHOCQuestions());
+      await FileGenerateManager.generateHOC(answers);
+      break;
+    }
+    case 'hook': {
+      const answers = await inquirer.prompt(questionTypes.getHookQuestions());
+      await FileGenerateManager.generateHook(answers);
+      break;
+    }
+    default: {
+      Logger.error(`Unhandled type ${type}`);
+    }
   }
 
   process.stdout.write('\n');
