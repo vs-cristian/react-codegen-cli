@@ -1,10 +1,8 @@
 import { STYLE_FORMATS } from '../constants';
-import { getNameCases } from '../utils';
-
-const nameCases = getNameCases('my component');
+import { changeCase } from '../utils';
 
 function getFileName(format, answers) {
-  const name = nameCases[`${format}Case`];
+  const name = changeCase('my component', format);
   const ext = answers.typescript ? 'tsx' : `j${answers.jsxExt ? 'sx' : 's'}`;
 
   return `${name}.${ext}`;

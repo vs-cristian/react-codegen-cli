@@ -5,12 +5,11 @@ import { CONFIG, EXT, APP_ROOT } from '../constants';
 import { Logger } from './Logger';
 
 export class FileService {
-  constructor(fileName) {
-    this.fileName = fileName;
-    this.dirPath = path.resolve(CONFIG.path, this.fileName);
-  }
+  private dirPath = path.resolve(CONFIG.path, this.fileName);
 
-  getFilePath(ext, type) {
+  constructor(private fileName: string) {}
+
+  getFilePath(ext: string, type?: string) {
     type = type ? `.${type}` : '';
     return `${this.dirPath}/${this.fileName}${type}.${ext}`;
   }
@@ -19,7 +18,7 @@ export class FileService {
     fs.mkdirpSync(this.dirPath);
   }
 
-  genJs(template) {
+  genJs(template: string) {
     const filePath = this.getFilePath(EXT.component);
     if (!fs.pathExistsSync(filePath)) {
       fs.writeFileSync(filePath, template);
@@ -32,7 +31,7 @@ export class FileService {
     }
   }
 
-  genStyle(template) {
+  genStyle(template: string) {
     const filePath = this.getFilePath(EXT.style, 'style');
     if (!fs.pathExistsSync(filePath)) {
       fs.writeFileSync(filePath, template);
@@ -45,7 +44,7 @@ export class FileService {
     }
   }
 
-  genTest(template) {
+  genTest(template: string) {
     const filePath = this.getFilePath(EXT.component, 'test');
     if (!fs.pathExistsSync(filePath)) {
       fs.writeFileSync(filePath, template);

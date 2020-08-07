@@ -11,21 +11,25 @@ export const type = {
       name: 'High Order Component',
       value: 'hoc',
     },
+    {
+      name: 'Hook',
+      value: 'hook',
+    },
   ],
 };
 
-export const name = genType => ({
+export const name = (genType: string, endStr = ':') => ({
   type: 'input',
   name: 'name',
-  message: `${genType} name:`,
-  validate: str => str.length > 0,
+  message: `${genType} name${endStr}`,
+  validate: (str: string) => str.length > 0,
 });
 
-export const test = {
+export const test = () => ({
   type: 'confirm',
   name: 'test',
   message: 'Create a test file?',
-};
+});
 
 export const hooks = args => ({
   type: 'checkbox',

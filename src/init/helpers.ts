@@ -12,7 +12,7 @@ export async function updatePackage(scriptName) {
   const { indent } = detectIndent(packageContent);
 
   pkg.scripts = pkg.scripts || {};
-  pkg.scripts[scriptName] = `react-codegen`;
+  pkg.scripts[scriptName] = 'react-codegen';
 
   fs.writeFileSync(packagePath, JSON.stringify(pkg, null, indent));
 }

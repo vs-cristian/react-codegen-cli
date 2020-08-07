@@ -4,9 +4,10 @@ import { cosmiconfigSync } from 'cosmiconfig';
 import defaultConfig from '../config/default.json';
 import { APP_ROOT, STYLE_FORMATS } from '../constants';
 import { Logger } from '../core/Logger';
+import { IConfig } from '../types/types';
 
 export function getConfig() {
-  let config = defaultConfig;
+  let config = defaultConfig as IConfig;
 
   const explorer = cosmiconfigSync('react-codegen');
   const { config: userConfig } = explorer.search(APP_ROOT) || {};
@@ -19,7 +20,7 @@ export function getConfig() {
 
       if (!isSupported) {
         Logger.warn(`Unknown stylesheet format - ${userConfig.styles}`);
-        Logger.warn(`Using default - css`);
+        Logger.warn('Using default - css');
         userConfig.styles = 'css';
       }
     }
