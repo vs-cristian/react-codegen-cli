@@ -1,11 +1,14 @@
 {
   "name": "react-codegen-cli",
-  "version": "0.1.6",
+  "version": "1.0.0",
   "description": "Software Development Kit for React",
   "main": "lib/index.js",
   "bin": {
     "react-codegen": "lib/bin.js"
   },
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "prepublish": "npm run build",
     "build": "babel src --out-dir lib --copy-files --extensions \".ts\"",
@@ -68,7 +71,10 @@
     "sdk",
     "React DevKit"
   ],
-  "repository": "https://github.com/Cristians953/react-codegen-cli.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cristians953/react-codegen-cli.git"
+  },
   "author": "Vasiliev Cristian <vasiliev.cristian99@gmail.com>",
   "license": "MIT"
 }
