@@ -1,6 +1,9 @@
-# React Codegen CLI
 
-React Codegen is a development tool to quickly generate React components.  
+<img height="128" src="https://user-images.githubusercontent.com/22912150/89680591-e9418e80-d8fb-11ea-93f7-1631ea571f33.png" alt="logo" />
+
+# React CodeGen CLI
+
+React CodeGen is a development tool to quickly generate React components.  
 It helps you to speed up productivity in React projects and stop copying, pasting files.
 
 ## Installation
@@ -38,13 +41,11 @@ such as connecting the `useState`, `useEffect`, `propTypes` and so on.
 ## Configuration File
 
 You also can set-up configuration file manually. 
-React codegen uses  [cosmiconfig](https://github.com/davidtheclark/cosmiconfig)  for configuration file support. This means you can configure it via:
+React CodeGen uses  [cosmiconfig](https://github.com/davidtheclark/cosmiconfig)  for configuration file support. This means you can configure it via:
 
 -   A  `"react-codegen"`  key in your  `package.json`  file.
 -   A  `.react-codegenrc`  file, written in JSON or YAML, with optional extensions:  `.json/.yaml/.yml`  (without extension takes precedence).
 -   A  `.react-codegenrc.js`  or  `react-codegen.config.js`  file that exports an object.
-
-The configuration file will be resolved in the root folder of the project. If no configuration file found the default config will be used.
 
 `react-codegen` will look for a [configuration file](#configuration-file) in root folder and use it if available.
 If no config file found it will fallback to a default configuration.
