@@ -1,6 +1,6 @@
 {
   "name": "react-codegen-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Software Development Kit for React",
   "main": "lib/index.js",
   "bin": {
@@ -71,10 +71,7 @@
     "sdk",
     "React DevKit"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Cristians953/react-codegen-cli.git"
-  },
-  "author": "Vasiliev Cristian <vasiliev.cristian99@gmail.com>",
+  "repository": "https://github.com/Cristians953/react-codegen-cli.git",
+  "author": "Cristian Vasiliev <vasiliev.cristian99@gmail.com>",
   "license": "MIT"
 }
