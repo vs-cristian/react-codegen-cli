@@ -6,7 +6,7 @@ import { generateHooks } from '../shared';
 
 export class ComponentTemplate extends TemplateBase implements Template {
   getStyleImportStringLiteral() {
-    const name = `${this.vars.fileName}.styles.${this.vars.ext.style}`;
+    const name = `./${this.vars.fileName}.styles.${this.vars.ext.style}`;
     return t.stringLiteral(name);
   }
 

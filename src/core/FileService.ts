@@ -32,12 +32,12 @@ export class FileService {
   }
 
   genStyle(template: string) {
-    const filePath = this.getFilePath(EXT.style, 'style');
+    const filePath = this.getFilePath(EXT.style, 'styles');
     if (!fs.pathExistsSync(filePath)) {
       fs.writeFileSync(filePath, template);
       Logger.success(
         chalk =>
-          `Successfully generated style file ${chalk.white(path.relative(APP_ROOT, filePath))}`
+          `Successfully generated styles file ${chalk.white(path.relative(APP_ROOT, filePath))}`
       );
     } else {
       Logger.warn(chalk => `File already exists ${chalk.white(filePath)}`);
