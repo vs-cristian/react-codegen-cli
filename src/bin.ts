@@ -24,15 +24,19 @@ yargs
   .command({
     command: '*',
     handler: (args: IArgs) => {
-      const { directory } = args;
+      const { directory, wrap } = args;
 
-      runGenerator({ directory })
+      runGenerator({ directory, wrap })
         .then(() => process.exit(0))
         .catch(err => {
           Logger.error(err);
           process.exit(1);
         });
     },
+  })
+  .option('wrap', {
+    type: 'boolean',
+    description: 'Wrap generated files in folder',
   })
   .option('directory', {
     alias: 'd',

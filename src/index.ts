@@ -8,17 +8,22 @@ import { FileGenerateManager } from './core/FileGenerateManager';
 import { CONFIG } from './constants';
 
 export interface IArgs {
+  wrap?: boolean;
   directory?: string;
 }
 
 export async function runGenerator(args: IArgs) {
-  const { directory } = args;
+  const { directory, wrap } = args;
   const { type } = await inquirer.prompt(typeQuestion as any);
 
   process.stdout.write('\n');
 
   if (directory) {
     CONFIG.path = path.resolve(process.cwd(), directory);
+  }
+
+  if (wrap != null) {
+    CONFIG.wrapFolder = wrap;
   }
 
   switch (type) {
