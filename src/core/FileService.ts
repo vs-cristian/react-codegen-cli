@@ -5,7 +5,7 @@ import { CONFIG, EXT, APP_ROOT } from '../constants';
 import { Logger } from './Logger';
 
 export class FileService {
-  private dirPath = path.resolve(CONFIG.path, this.fileName);
+  private dirPath = path.resolve(CONFIG.path, CONFIG.wrapFolder ? this.fileName : '');
 
   constructor(private fileName: string) {}
 

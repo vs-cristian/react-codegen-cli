@@ -9,6 +9,7 @@ export interface IConfig {
   jsxExt: boolean;
   fileNameCase: FileNameCase;
   path: string;
+  wrapFolder: boolean;
 }
 
 interface IBaseVariables {

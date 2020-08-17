@@ -27,6 +27,11 @@ export const question = [
     when: values => !values.typescript,
   },
   {
+    type: 'confirm',
+    name: 'wrapFolder',
+    message: 'Should create a wrap folder?',
+  },
+  {
     type: 'list',
     name: 'fileNameCase',
     message: 'Which file name case would you like to use?',

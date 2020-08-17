@@ -25,6 +25,7 @@ export async function initConfigFile() {
     jsxExt: answers.jsxExt,
     fileNameCase: answers.fileNameCase,
     path: answers.path,
+    wrapFolder: answers.wrapFolder,
   };
 
   const content = JSON.stringify(config, null, 2);

@@ -2,6 +2,7 @@
   "styles": "scss",
   "typescript": false,
   "jsxExt": true,
+  "wrapFolder": true,
   "fileNameCase": "pascal",
   "path": "src/components"
 }
