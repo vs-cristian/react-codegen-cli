@@ -1,20 +1,25 @@
 import inquirer from 'inquirer';
 
-import { init } from './init';
+import path from 'path';
 import { Logger } from './core/Logger';
 import * as questionTypes from './questions/questionTypes';
 import { type as typeQuestion } from './questions/questions';
 import { FileGenerateManager } from './core/FileGenerateManager';
+import { CONFIG } from './constants';
 
-export async function runCLI(shouldInit: boolean) {
-  if (shouldInit) {
-    await init();
-    return;
-  }
+export interface IArgs {
+  directory?: string;
+}
 
+export async function runGenerator(args: IArgs) {
+  const { directory } = args;
   const { type } = await inquirer.prompt(typeQuestion as any);
 
   process.stdout.write('\n');
+
+  if (directory) {
+    CONFIG.path = path.resolve(process.cwd(), directory);
+  }
 
   switch (type) {
     case 'component': {

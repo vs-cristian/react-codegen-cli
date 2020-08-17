@@ -1,7 +1,7 @@
 import path from 'path';
 
 import { getAppRoot, getConfig, getStylesExtension } from '../utils';
-import { StyleFormats } from '../types/types';
+import { StyleFormats } from '../types';
 
 export const STYLE_FORMATS: StyleFormats[] = ['CSS', 'SCSS', 'SASS', 'Less', 'Stylus'];
 export const APP_ROOT = getAppRoot();

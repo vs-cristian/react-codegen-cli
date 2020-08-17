@@ -4,7 +4,7 @@ import { cosmiconfigSync } from 'cosmiconfig';
 import defaultConfig from '../config/default.json';
 import { APP_ROOT, STYLE_FORMATS } from '../constants';
 import { Logger } from '../core/Logger';
-import { IConfig } from '../types/types';
+import { IConfig } from '../types';
 
 export function getConfig() {
   let config = defaultConfig as IConfig;

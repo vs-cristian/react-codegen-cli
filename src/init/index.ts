@@ -8,7 +8,7 @@ import { question } from './questions';
 import { APP_ROOT } from '../constants';
 import { updatePackage } from './helpers';
 
-export async function init() {
+export async function initConfigFile() {
   clear(true);
   Logger.log(
     chalk => `
