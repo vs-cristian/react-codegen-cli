@@ -1,5 +1,5 @@
-import { CONFIG, EXT } from '../constants';
-import { IComponentVariables, IHOCVariables, IHookVariables } from '../types';
+import { config } from '@/config';
+import { IComponentVariables, IHOCVariables, IHookVariables } from '@/types';
 import { changeCase } from './changeCase';
 
 export function getHOCVariables(data): IHOCVariables {
@@ -10,7 +10,6 @@ export function getHOCVariables(data): IHOCVariables {
   return Object.assign(data, {
     componentName: name,
     fileName: name,
-    ext: EXT,
   });
 }
 
@@ -22,14 +21,12 @@ export function getHookVariables(data): IHookVariables {
   return Object.assign(data, {
     componentName: name,
     fileName: name,
-    ext: EXT,
   });
 }
 
 export function getComponentVariables(data): IComponentVariables {
   return Object.assign(data, {
     componentName: changeCase(data.name, 'pascal'),
-    fileName: changeCase(data.name, CONFIG.fileNameCase),
-    ext: EXT,
+    fileName: changeCase(data.name, config.fileNameCase),
   });
 }

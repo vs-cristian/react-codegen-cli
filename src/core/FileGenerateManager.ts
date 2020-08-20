@@ -1,4 +1,4 @@
-import { getComponentVariables, getHOCVariables, getHookVariables } from '../utils';
+import * as utils from '../utils';
 import { FileService } from './FileService';
 import { TemplateGenerator } from './TemplateGenerator';
 import { HOCTemplate } from './temlpates/components/HOCTemplate';
@@ -8,7 +8,7 @@ import { HookTemplate } from './temlpates/components/HookTemplate';
 
 export class FileGenerateManager {
   static generateHook(answers) {
-    const variables = getHookVariables(answers);
+    const variables = utils.getHookVariables(answers);
 
     const fileService = new FileService(variables.fileName);
     const templateGenerator = new TemplateGenerator(variables);
@@ -20,7 +20,7 @@ export class FileGenerateManager {
   }
 
   static generateHOC(answers) {
-    const variables = getHOCVariables(answers);
+    const variables = utils.getHOCVariables(answers);
 
     const fileService = new FileService(variables.fileName);
     const templateGenerator = new TemplateGenerator(variables);
@@ -32,7 +32,7 @@ export class FileGenerateManager {
   }
 
   static generateComponent(answers) {
-    const variables = getComponentVariables(answers);
+    const variables = utils.getComponentVariables(answers);
 
     const fileService = new FileService(variables.fileName);
     const templateGenerator = new TemplateGenerator(variables);

@@ -1,12 +1,12 @@
 import path from 'path';
 import { cosmiconfigSync } from 'cosmiconfig';
 
-import defaultConfig from '../config/default.json';
-import { APP_ROOT, STYLE_FORMATS } from '../constants';
-import { Logger } from '../core/Logger';
-import { IConfig } from '../types';
+import defaultConfig from '@/config/default.json';
+import { APP_ROOT, STYLE_FORMATS } from '@/constants';
+import { Logger } from '@/core/Logger';
+import { IConfig } from '@/types';
 
-export function getConfig() {
+export function getUserConfig() {
   let config = defaultConfig as IConfig;
 
   const explorer = cosmiconfigSync('react-codegen');

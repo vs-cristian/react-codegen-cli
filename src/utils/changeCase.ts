@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { Logger } from '../core/Logger';
+import { Logger } from '@/core/Logger';
 
 const stringCases = {
   camel: _.camelCase,

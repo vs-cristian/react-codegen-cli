@@ -1,8 +1,7 @@
 import * as t from '@babel/types';
+import { TemplateBase } from '@/core/TemplateBase';
+import { Template } from '@/core/TemplateGenerator';
 import * as c from '../shared';
-import { TemplateBase } from '../../TemplateBase';
-import { Template } from '../../TemplateGenerator';
-import { generateHooks } from '../shared';
 
 export class HookTemplate extends TemplateBase implements Template {
   generateAST(): t.File {
@@ -16,7 +15,7 @@ export class HookTemplate extends TemplateBase implements Template {
       body.push(t.emptyStatement());
     }
 
-    body.push(c.hook(this.vars.componentName, generateHooks(this.vars.hooks)));
+    body.push(c.hook(this.vars.componentName, c.generateHooks(this.vars.hooks)));
 
     return c.program(body);
   }

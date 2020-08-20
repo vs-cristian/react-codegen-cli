@@ -1,5 +1,5 @@
-import { STYLE_FORMATS } from '../constants';
-import { changeCase } from '../utils';
+import { STYLE_FORMATS } from '@/constants';
+import { changeCase } from '@/utils';
 
 function getFileName(format, answers) {
   const name = changeCase('my component', format);
@@ -14,6 +14,11 @@ export const question = [
     name: 'styles',
     message: 'Which stylesheet format would you like to use?',
     choices: STYLE_FORMATS,
+  },
+  {
+    type: 'confirm',
+    name: 'cssModules',
+    message: 'Use css modules?',
   },
   {
     type: 'confirm',

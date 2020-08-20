@@ -1,14 +1,6 @@
-import path from 'path';
+import { StyleFormats } from '@/types';
+import * as utils from '@/utils';
 
-import { getAppRoot, getConfig, getStylesExtension } from '../utils';
-import { StyleFormats } from '../types';
-
+// export const ROOT = path.dirname(require.main.filename);
 export const STYLE_FORMATS: StyleFormats[] = ['CSS', 'SCSS', 'SASS', 'Less', 'Stylus'];
-export const APP_ROOT = getAppRoot();
-export const ROOT = path.dirname(require.main.filename);
-export const CONFIG = getConfig();
-export const EXT = {
-  component: CONFIG.typescript ? 'tsx' : `j${CONFIG.jsxExt ? 'sx' : 's'}`,
-  script: `${CONFIG.typescript ? 't' : 'j'}s`,
-  style: getStylesExtension(CONFIG.styles),
-};
+export const APP_ROOT = utils.getAppRoot();

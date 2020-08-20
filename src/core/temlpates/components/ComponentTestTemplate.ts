@@ -1,11 +1,12 @@
 import * as t from '@babel/types';
+import { Template } from '@/core/TemplateGenerator';
+import { TemplateBase } from '@/core/TemplateBase';
+import { config } from '@/config';
 import * as c from '../shared';
-import { Template } from '../../TemplateGenerator';
-import { TemplateBase } from '../../TemplateBase';
 
 export class ComponentTestTemplate extends TemplateBase implements Template {
   generateAST(): t.File {
-    const componentPath = `./${this.vars.componentName}.${this.vars.ext.component}`;
+    const componentPath = `./${this.vars.componentName}.${config.ext.component}`;
     const body: t.Statement[] = [];
 
     body.push(c.importDefault('React', 'react'));

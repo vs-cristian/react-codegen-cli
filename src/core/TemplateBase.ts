@@ -1,4 +1,4 @@
-import * as c from './temlpates/shared/utils';
+import * as c from './temlpates/shared';
 
 export class TemplateBase {
   constructor(protected vars) {}

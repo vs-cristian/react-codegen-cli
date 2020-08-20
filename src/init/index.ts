@@ -3,9 +3,9 @@ import path from 'path';
 import clear from 'console-clear';
 import inquirer from 'inquirer';
 
-import { Logger } from '../core/Logger';
+import { Logger } from '@/core/Logger';
+import { APP_ROOT } from '@/constants';
 import { question } from './questions';
-import { APP_ROOT } from '../constants';
 import { updatePackage } from './helpers';
 
 export async function initConfigFile() {
@@ -26,6 +26,7 @@ export async function initConfigFile() {
     fileNameCase: answers.fileNameCase,
     path: answers.path,
     wrapFolder: answers.wrapFolder,
+    cssModules: answers.cssModules,
   };
 
   const content = JSON.stringify(config, null, 2);

@@ -1,7 +1,7 @@
 import * as t from '@babel/types';
 import generate from '@babel/generator';
 import prettier from 'prettier';
-import { IComponentVariables, IHOCVariables, IHookVariables } from '../types';
+import { IComponentVariables, IHOCVariables, IHookVariables } from '@/types';
 
 export type IVariables = IHookVariables | IHOCVariables | IComponentVariables;
 

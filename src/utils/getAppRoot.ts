@@ -1,6 +1,6 @@
 import path from 'path';
 import findUp from 'find-up';
-import { Logger } from '../core/Logger';
+import { Logger } from '@/core/Logger';
 
 export function getAppRoot() {
   const file = findUp.sync('package.json');

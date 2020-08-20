@@ -4,5 +4,6 @@
   "jsxExt": true,
   "wrapFolder": true,
   "fileNameCase": "pascal",
-  "path": "src/components"
+  "path": "src/components",
+  "cssModules": true
 }

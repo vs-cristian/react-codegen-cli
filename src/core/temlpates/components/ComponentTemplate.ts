@@ -1,13 +1,19 @@
 import * as t from '@babel/types';
+import { Template } from '@/core/TemplateGenerator';
+import { TemplateBase } from '@/core/TemplateBase';
+import { config } from '@/config';
 import * as c from '../shared';
-import { Template } from '../../TemplateGenerator';
-import { TemplateBase } from '../../TemplateBase';
-import { generateHooks } from '../shared';
 
 export class ComponentTemplate extends TemplateBase implements Template {
-  getStyleImportStringLiteral() {
-    const name = `./${this.vars.fileName}.styles.${this.vars.ext.style}`;
-    return t.stringLiteral(name);
+  getStyleImport() {
+    const specifiers = [];
+    const name = `./${this.vars.fileName}.${config.prefixes.style}.${config.ext.style}`;
+
+    if (config.cssModules) {
+      specifiers.push(t.importDefaultSpecifier(t.identifier('styles')));
+    }
+
+    return t.importDeclaration(specifiers, t.stringLiteral(name));
   }
 
   generateAST() {
@@ -19,7 +25,7 @@ export class ComponentTemplate extends TemplateBase implements Template {
       body.push(c.importDefault('PropTypes', 'prop-types'));
     }
 
-    body.push(t.importDeclaration([], this.getStyleImportStringLiteral()));
+    body.push(this.getStyleImport());
     body.push(t.emptyStatement());
 
     if (this.hasHook('useReducer')) {
@@ -27,7 +33,7 @@ export class ComponentTemplate extends TemplateBase implements Template {
       body.push(t.emptyStatement());
     }
 
-    body.push(c.component(this.vars.componentName, generateHooks(this.vars.hooks)));
+    body.push(c.component(this.vars.componentName, c.generateHooks(this.vars.hooks)));
     body.push(t.emptyStatement());
 
     if (this.hasMod('propTypes')) {

@@ -1,5 +1,3 @@
-import { EXT } from '../constants';
-
 export type StyleFormats = 'CSS' | 'SCSS' | 'SASS' | 'Less' | 'Stylus';
 export type FileNameCase = 'pascal' | 'camel' | 'kebab' | 'snake' | 'snakeUpper';
 
@@ -10,12 +8,12 @@ export interface IConfig {
   fileNameCase: FileNameCase;
   path: string;
   wrapFolder: boolean;
+  cssModules: boolean;
 }
 
 interface IBaseVariables {
   componentName: string;
   fileName: string;
-  ext: typeof EXT;
 }
 
 export interface IComponentVariables extends IBaseVariables {

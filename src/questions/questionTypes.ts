@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { CONFIG } from '../constants';
+import { config } from '@/config';
 import * as questions from './questions';
 
 const reactHooks = [
@@ -14,7 +14,7 @@ const reactHooks = [
 const mods = [];
 
 export function getComponentQuestions() {
-  if (!CONFIG.typescript) {
+  if (!config.typescript) {
     mods.push('propTypes');
   }
 

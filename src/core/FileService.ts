@@ -1,11 +1,12 @@
 import fs from 'fs-extra';
 import path from 'path';
 
-import { CONFIG, EXT, APP_ROOT } from '../constants';
+import { APP_ROOT } from '@/constants';
+import { config } from '@/config';
 import { Logger } from './Logger';
 
 export class FileService {
-  private dirPath = path.resolve(CONFIG.path, CONFIG.wrapFolder ? this.fileName : '');
+  private dirPath = path.resolve(config.path, config.wrapFolder ? this.fileName : '');
 
   constructor(private fileName: string) {}
 
@@ -19,7 +20,7 @@ export class FileService {
   }
 
   genJs(template: string) {
-    const filePath = this.getFilePath(EXT.component);
+    const filePath = this.getFilePath(config.ext.component);
     if (!fs.pathExistsSync(filePath)) {
       fs.writeFileSync(filePath, template);
       Logger.success(
@@ -32,7 +33,7 @@ export class FileService {
   }
 
   genStyle(template: string) {
-    const filePath = this.getFilePath(EXT.style, 'styles');
+    const filePath = this.getFilePath(config.ext.style, config.prefixes.style);
     if (!fs.pathExistsSync(filePath)) {
       fs.writeFileSync(filePath, template);
       Logger.success(
@@ -45,7 +46,7 @@ export class FileService {
   }
 
   genTest(template: string) {
-    const filePath = this.getFilePath(EXT.component, 'test');
+    const filePath = this.getFilePath(config.ext.component, config.prefixes.test);
     if (!fs.pathExistsSync(filePath)) {
       fs.writeFileSync(filePath, template);
       Logger.success(

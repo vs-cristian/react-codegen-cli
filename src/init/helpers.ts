@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs-extra';
 
 import detectIndent from 'detect-indent';
-import { APP_ROOT } from '../constants';
+import { APP_ROOT } from '@/constants';
 
 export async function updatePackage(scriptName) {
   const packagePath = path.resolve(APP_ROOT, 'package.json');
