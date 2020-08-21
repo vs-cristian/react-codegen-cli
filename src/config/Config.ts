@@ -1,4 +1,4 @@
-import { FileNameCase, IConfig, StyleFormats } from '@/types';
+import { ExportType, FileNameCase, IConfig, StyleFormats } from '@/types';
 import defaultConfig from './default.json';
 
 export type ConfigPrefixes = {
@@ -33,6 +33,8 @@ export class Config implements IConfig {
 
   ext: ConfigExt;
 
+  exportType: ExportType;
+
   constructor(config: IConfig) {
     this.config = Object.assign(defaultConfig, config);
 
@@ -49,6 +51,7 @@ export class Config implements IConfig {
     this.typescript = this.config.typescript;
     this.wrapFolder = this.config.wrapFolder;
     this.cssModules = this.config.cssModules;
+    this.exportType = this.config.exportType;
   }
 
   private setFilesExtension() {

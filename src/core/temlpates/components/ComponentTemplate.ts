@@ -33,11 +33,22 @@ export class ComponentTemplate extends TemplateBase implements Template {
       body.push(t.emptyStatement());
     }
 
-    body.push(c.component(this.vars.componentName, c.generateHooks(this.vars.hooks)));
-    body.push(t.emptyStatement());
+    const component = c.component(this.vars.componentName, c.generateHooks(this.vars.hooks));
+
+    if (config.exportType === 'named') {
+      body.push(t.exportNamedDeclaration(component));
+    } else {
+      body.push(component);
+    }
 
     if (this.hasMod('propTypes')) {
+      body.push(t.emptyStatement());
       body.push(c.propTypes(this.vars.componentName));
+    }
+
+    if (config.exportType === 'default') {
+      body.push(t.emptyStatement());
+      body.push(t.exportDefaultDeclaration(t.identifier(this.vars.componentName)));
     }
 
     return c.program(body);

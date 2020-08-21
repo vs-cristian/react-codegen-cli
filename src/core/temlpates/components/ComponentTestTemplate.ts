@@ -6,12 +6,17 @@ import * as c from '../shared';
 
 export class ComponentTestTemplate extends TemplateBase implements Template {
   generateAST(): t.File {
-    const componentPath = `./${this.vars.componentName}.${config.ext.component}`;
+    const componentPath = `./${this.vars.componentName}`;
     const body: t.Statement[] = [];
 
     body.push(c.importDefault('React', 'react'));
     body.push(c.importNamed([c.importSpec('render')], '@testing-library/react'));
-    body.push(c.importNamed([c.importSpec(this.vars.componentName)], componentPath));
+
+    if (config.exportType === 'named') {
+      body.push(c.importNamed([c.importSpec(this.vars.componentName)], componentPath));
+    } else {
+      body.push(c.importDefault(this.vars.componentName, componentPath));
+    }
 
     body.push(t.emptyStatement());
 

@@ -1,5 +1,6 @@
 export type StyleFormats = 'CSS' | 'SCSS' | 'SASS' | 'Less' | 'Stylus';
 export type FileNameCase = 'pascal' | 'camel' | 'kebab' | 'snake' | 'snakeUpper';
+export type ExportType = 'named' | 'default';
 
 export interface IConfig {
   styles: StyleFormats;
@@ -9,6 +10,7 @@ export interface IConfig {
   path: string;
   wrapFolder: boolean;
   cssModules: boolean;
+  exportType: ExportType;
 }
 
 interface IBaseVariables {

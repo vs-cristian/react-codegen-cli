@@ -5,5 +5,6 @@
   "wrapFolder": true,
   "fileNameCase": "pascal",
   "path": "src/components",
-  "cssModules": true
+  "cssModules": true,
+  "exportType": "named"
 }
