@@ -6,5 +6,6 @@
   "fileNameCase": "pascal",
   "path": "src/components",
   "cssModules": true,
-  "exportType": "named"
+  "exportType": "default",
+  "arrowFunction": true
 }

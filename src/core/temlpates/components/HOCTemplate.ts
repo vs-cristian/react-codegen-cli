@@ -16,7 +16,21 @@ export class HOCTemplate extends TemplateBase implements Template {
       body.push(t.emptyStatement());
     }
 
-    const hoc = c.hoc(this.vars.componentName, c.generateHooks(this.vars.hooks));
+    const functionContainer = config.arrowFunction
+      ? c.arrowFunctionDeclaration
+      : c.regularFunctionDeclaration;
+
+    const hocBody = c.hocBody(c.generateHooks(this.vars.hooks));
+
+    const functionExpression = config.arrowFunction
+      ? t.arrowFunctionExpression([t.identifier('props')], hocBody)
+      : t.functionExpression(null, [t.identifier('props')], hocBody);
+
+    const hoc = functionContainer(
+      this.vars.componentName,
+      [t.identifier('WrappedComponent')],
+      [t.returnStatement(functionExpression)]
+    );
 
     if (config.exportType === 'named') {
       body.push(t.exportNamedDeclaration(hoc));

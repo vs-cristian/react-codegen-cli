@@ -20,7 +20,15 @@ export class HookTemplate extends TemplateBase implements Template {
       body.push(t.emptyStatement());
     }
 
-    const hook = c.hook(this.vars.componentName, c.generateHooks(this.vars.hooks));
+    const functionContainer = config.arrowFunction
+      ? c.arrowFunctionDeclaration
+      : c.regularFunctionDeclaration;
+
+    const hook = functionContainer(
+      this.vars.componentName,
+      [],
+      [...c.generateHooks(this.vars.hooks), t.returnStatement(t.nullLiteral())]
+    );
 
     if (config.exportType === 'named') {
       body.push(t.exportNamedDeclaration(hook));

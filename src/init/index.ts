@@ -27,6 +27,7 @@ export async function initConfigFile() {
     path: answers.path,
     wrapFolder: answers.wrapFolder,
     cssModules: answers.cssModules,
+    arrowFunction: answers.arrowFunction,
   };
 
   const content = JSON.stringify(config, null, 2);

@@ -29,6 +29,8 @@ export class Config implements IConfig {
 
   cssModules: boolean;
 
+  arrowFunction: boolean;
+
   prefixes: ConfigPrefixes;
 
   ext: ConfigExt;
@@ -52,6 +54,7 @@ export class Config implements IConfig {
     this.wrapFolder = this.config.wrapFolder;
     this.cssModules = this.config.cssModules;
     this.exportType = this.config.exportType;
+    this.arrowFunction = this.config.arrowFunction;
   }
 
   private setFilesExtension() {

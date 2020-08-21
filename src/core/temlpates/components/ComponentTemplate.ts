@@ -33,7 +33,14 @@ export class ComponentTemplate extends TemplateBase implements Template {
       body.push(t.emptyStatement());
     }
 
-    const component = c.component(this.vars.componentName, c.generateHooks(this.vars.hooks));
+    const functionContainer = config.arrowFunction
+      ? c.arrowFunctionDeclaration
+      : c.regularFunctionDeclaration;
+    const component = functionContainer(
+      this.vars.componentName,
+      [t.identifier('props')],
+      c.component(this.vars.componentName, c.generateHooks(this.vars.hooks))
+    );
 
     if (config.exportType === 'named') {
       body.push(t.exportNamedDeclaration(component));

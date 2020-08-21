@@ -14,6 +14,27 @@ export const importNamed = (imports: t.ImportSpecifier[], from: string) => {
   return t.importDeclaration(imports, t.stringLiteral(from));
 };
 
+export const arrowFunctionDeclaration = (
+  name: string,
+  params: t.Identifier[],
+  body: t.Statement[]
+) => {
+  return t.variableDeclaration('const', [
+    t.variableDeclarator(
+      t.identifier(name),
+      t.arrowFunctionExpression(params, t.blockStatement(body))
+    ),
+  ]);
+};
+
+export const regularFunctionDeclaration = (
+  name: string,
+  params: t.Identifier[],
+  body: t.Statement[]
+) => {
+  return t.functionDeclaration(t.identifier(name), params, t.blockStatement(body));
+};
+
 export const importDefault = (name, from, specs = []) => {
   return t.importDeclaration(
     [t.importDefaultSpecifier(t.identifier(name)), ...specs],
@@ -25,7 +46,7 @@ export const propTypes = (componentName: string) => {
   return t.expressionStatement(
     t.assignmentExpression(
       '=',
-      t.memberExpression(t.identifier(componentName), t.identifier('propTypes'), false),
+      t.memberExpression(t.identifier(componentName), t.identifier('propTypes')),
       t.objectExpression([])
     )
   );

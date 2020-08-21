@@ -37,6 +37,11 @@ export const question = [
     message: 'Should create a wrap folder?',
   },
   {
+    type: 'confirm',
+    name: 'arrowFunction',
+    message: 'Use arrow function syntax?',
+  },
+  {
     type: 'list',
     name: 'fileNameCase',
     message: 'Which file name case would you like to use?',

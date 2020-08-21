@@ -11,6 +11,7 @@ export interface IConfig {
   wrapFolder: boolean;
   cssModules: boolean;
   exportType: ExportType;
+  arrowFunction: boolean;
 }
 
 interface IBaseVariables {
