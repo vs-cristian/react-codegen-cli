@@ -1,8 +1,8 @@
-![NPM version](https://img.shields.io/npm/v/react-codegen-cli?style=flat-square&color=1e88e5)
-![GitHub stars](https://img.shields.io/github/stars/Cristians953/react-codegen-cli?style=flat-square&color=yellow)
-[![NPM total downloads](https://img.shields.io/npm/dt/react-codegen-cli.svg?style=flat-square)](https://npmcharts.com/compare/react-virtualized?minimal=true)
-[![NPM monthly downloads](https://img.shields.io/npm/dm/react-codegen-cli.svg?style=flat-square&color=03a9f4)](https://npmcharts.com/compare/react-virtualized?minimal=true)
-![NPM license](https://img.shields.io/npm/l/react-codegen-cli?style=flat-square)
+[![NPM version](https://img.shields.io/npm/v/react-codegen-cli?style=flat-square&color=1e88e5)](https://www.npmjs.com/package/react-codegen-cli)
+[![GitHub stars](https://img.shields.io/github/stars/Cristians953/react-codegen-cli?style=flat-square&color=yellow)](https://github.com/Cristians953/react-codegen-cli)
+[![NPM total downloads](https://img.shields.io/npm/dt/react-codegen-cli.svg?style=flat-square)](https://npmcharts.com/compare/react-codegen-cli?minimal=true)
+[![NPM monthly downloads](https://img.shields.io/npm/dm/react-codegen-cli.svg?style=flat-square&color=03a9f4)](https://npmcharts.com/compare/react-codegen-cli?minimal=true)
+[![NPM license](https://img.shields.io/npm/l/react-codegen-cli?style=flat-square)](https://www.npmjs.com/package/react-codegen-cli)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square&color=66bb6a)](https://github.com/Cristians953/react-codegen-cli/issues)
 
 
@@ -18,6 +18,7 @@
     React CodeGen is a development tool to quickly generate React components.  
     It helps you to speed up productivity in React projects and stop copying, pasting files.
     <br />
+    <br />
     <a href="#get-started">Get Started</a>
     ·
     <a href="https://github.com/Cristians953/react-codegen-cli/issues">Report Bug</a>
@@ -25,6 +26,19 @@
     <a href="https://github.com/Cristians953/react-codegen-cli/issues">Request Feature</a>
   </p>
 </p>
+
+### New features 🚀⭐
+* Added 4 new config options: 
+  * `arrowFunction` - indicates if it should generate arrow functions instead of the regular.
+  * `exportType` - export type to be used for modules.
+  * `cssModules` - generate css module instead of regular style file.
+  * `wrapFolder` - Wrap generated files in a folder.
+  
+* And 2 new CLI arguments:
+  * `-d` or` --directory` - specify directory where files are created, relative to root path.
+  * `--wrap` - does the same as the `wrapFolder` option.
+
+
 
 ## Table of Contents
 
