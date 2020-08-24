@@ -1,6 +1,6 @@
 {
   "name": "react-codegen-cli",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Software Development Kit for React",
   "main": "lib/index.js",
   "bin": {
