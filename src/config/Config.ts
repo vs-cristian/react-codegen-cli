@@ -1,5 +1,12 @@
 import { ExportType, FileNameCase, IConfig, StyleFormats } from '@/types';
-import defaultConfig from './default.json';
+import {
+  APP_ROOT,
+  DEFAULT_CONFIG,
+  EXPORT_TYPES,
+  STYLE_FORMATS,
+} from '@/constants';
+import { Logger } from '@/core/Logger';
+import path from 'path';
 
 export type ConfigPrefixes = {
   style: 'module' | 'styles';
@@ -13,8 +20,6 @@ export type ConfigExt = {
 };
 
 export class Config implements IConfig {
-  config: IConfig;
-
   fileNameCase: FileNameCase;
 
   styles: StyleFormats;
@@ -38,23 +43,63 @@ export class Config implements IConfig {
   exportType: ExportType;
 
   constructor(config: IConfig) {
-    this.config = Object.assign(defaultConfig, config);
+    const cfg = Object.assign(DEFAULT_CONFIG, config);
 
-    this.setInitialVariables();
+    this.setVariables(cfg);
     this.setFilesExtension();
     this.setPrefixes();
   }
 
-  private setInitialVariables() {
-    this.fileNameCase = this.config.fileNameCase;
-    this.styles = this.config.styles;
-    this.path = this.config.path;
-    this.jsxExt = this.config.jsxExt;
-    this.typescript = this.config.typescript;
-    this.wrapFolder = this.config.wrapFolder;
-    this.cssModules = this.config.cssModules;
-    this.exportType = this.config.exportType;
-    this.arrowFunction = this.config.arrowFunction;
+  private setVariables(config) {
+    // Boolean
+
+    this.jsxExt = config.jsxExt ?? this.jsxExt;
+    this.typescript = config.typescript ?? this.typescript;
+    this.wrapFolder = config.wrapFolder ?? this.wrapFolder;
+    this.cssModules = config.cssModules ?? this.cssModules;
+    this.arrowFunction = config.arrowFunction ?? this.arrowFunction;
+
+    // Enum
+
+    this.fileNameCase = config.fileNameCase ?? this.fileNameCase;
+
+    if (config.styles) {
+      const styles = config.styles.toLowerCase();
+      const formats = STYLE_FORMATS.map(v => v.toLowerCase());
+      const isSupported = formats.includes(styles);
+
+      if (isSupported) {
+        this.styles = config.styles;
+      } else {
+        Logger.warn(
+          chalk =>
+            `Unsupported "styles" value - ${styles} ${chalk.white(
+              `(using default value - ${DEFAULT_CONFIG.styles})`
+            )}`
+        );
+        this.styles = DEFAULT_CONFIG.styles;
+      }
+    }
+
+    if (config.exportType) {
+      if (EXPORT_TYPES.includes(config.exportType)) {
+        this.exportType = config.exportType;
+      } else {
+        Logger.warn(
+          chalk =>
+            `Unsupported "exportType" value - ${
+              config.exportType
+            } ${chalk.white(
+              `(using default value - ${DEFAULT_CONFIG.exportType})`
+            )}`
+        );
+        this.exportType = DEFAULT_CONFIG.exportType;
+      }
+    }
+
+    // Other
+
+    this.path = path.resolve(APP_ROOT, config.path ?? DEFAULT_CONFIG.path);
   }
 
   private setFilesExtension() {
@@ -75,5 +120,11 @@ export class Config implements IConfig {
       style: this.cssModules ? 'module' : 'styles',
       test: 'test',
     };
+  }
+
+  public update(config: IConfig) {
+    this.setVariables(config);
+    this.setFilesExtension();
+    this.setPrefixes();
   }
 }

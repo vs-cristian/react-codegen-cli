@@ -14,6 +14,7 @@ export interface IArgs {
 
 export async function runGenerator(args: IArgs) {
   const { directory, wrap } = args;
+
   const { type } = await inquirer.prompt(typeQuestion as any);
 
   process.stdout.write('\n');
@@ -28,7 +29,9 @@ export async function runGenerator(args: IArgs) {
 
   switch (type) {
     case 'component': {
-      const answers = await inquirer.prompt(questionTypes.getComponentQuestions());
+      const answers = await inquirer.prompt(
+        questionTypes.getComponentQuestions()
+      );
       await FileGenerateManager.generateComponent(answers);
       break;
     }

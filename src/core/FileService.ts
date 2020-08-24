@@ -6,7 +6,10 @@ import { config } from '@/config';
 import { Logger } from './Logger';
 
 export class FileService {
-  private dirPath = path.resolve(config.path, config.wrapFolder ? this.fileName : '');
+  private dirPath = path.resolve(
+    config.path,
+    config.wrapFolder ? this.fileName : ''
+  );
 
   constructor(private fileName: string) {}
 
@@ -25,7 +28,9 @@ export class FileService {
       fs.writeFileSync(filePath, template);
       Logger.success(
         chalk =>
-          `Successfully generated component file ${chalk.white(path.relative(APP_ROOT, filePath))}`
+          `Successfully generated component file ${chalk.white(
+            path.relative(APP_ROOT, filePath)
+          )}`
       );
     } else {
       Logger.warn(chalk => `File already exists ${chalk.white(filePath)}`);
@@ -38,7 +43,9 @@ export class FileService {
       fs.writeFileSync(filePath, template);
       Logger.success(
         chalk =>
-          `Successfully generated styles file ${chalk.white(path.relative(APP_ROOT, filePath))}`
+          `Successfully generated styles file ${chalk.white(
+            path.relative(APP_ROOT, filePath)
+          )}`
       );
     } else {
       Logger.warn(chalk => `File already exists ${chalk.white(filePath)}`);
@@ -46,12 +53,17 @@ export class FileService {
   }
 
   genTest(template: string) {
-    const filePath = this.getFilePath(config.ext.component, config.prefixes.test);
+    const filePath = this.getFilePath(
+      config.ext.component,
+      config.prefixes.test
+    );
     if (!fs.pathExistsSync(filePath)) {
       fs.writeFileSync(filePath, template);
       Logger.success(
         chalk =>
-          `Successfully generated test file ${chalk.white(path.relative(APP_ROOT, filePath))}`
+          `Successfully generated test file ${chalk.white(
+            path.relative(APP_ROOT, filePath)
+          )}`
       );
     } else {
       Logger.warn(chalk => `File already exists ${chalk.white(filePath)}`);

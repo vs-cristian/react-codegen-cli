@@ -10,10 +10,14 @@
     "lib"
   ],
   "scripts": {
-    "prepublish": "npm run build",
+    "prepublish": "yarn build && yarn clean",
+    "postpublish": "yarn build",
     "build": "babel src --out-dir lib --copy-files --extensions \".ts\"",
-    "watch": "npm run build -- --watch --source-maps inline",
-    "lint": "eslint src --ext .ts"
+    "watch": "yarn build --watch --source-maps inline",
+    "lint": "eslint src --ext .ts",
+    "start": "node ./lib/bin.js",
+    "gen": "node ./lib/__tests__/script.js",
+    "clean": "rm -rf ./src/__tests__/generated/*; rm -rf ./lib/__tests__"
   },
   "husky": {
     "hooks": {
@@ -36,7 +40,6 @@
     "inquirer": "^7.3.3",
     "lodash": "^4.17.19",
     "log-symbols": "^4.0.0",
-    "mustache": "^4.0.1",
     "prettier": "^2.0.5",
     "yargs": "^15.4.1"
   },
@@ -61,7 +64,6 @@
     "eslint-config-airbnb-typescript": "^8.0.2",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
-    "husky": "^4.2.5",
     "typescript": "^3.9.7"
   },
   "keywords": [

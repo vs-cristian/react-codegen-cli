@@ -1,5 +1,10 @@
-export type StyleFormats = 'CSS' | 'SCSS' | 'SASS' | 'Less' | 'Stylus';
-export type FileNameCase = 'pascal' | 'camel' | 'kebab' | 'snake' | 'snakeUpper';
+export type StyleFormats = 'css' | 'scss' | 'sass' | 'less' | 'stylus';
+export type FileNameCase =
+  | 'pascal'
+  | 'camel'
+  | 'kebab'
+  | 'snake'
+  | 'snakeUpper';
 export type ExportType = 'named' | 'default';
 
 export interface IConfig {
@@ -20,7 +25,7 @@ interface IBaseVariables {
 }
 
 export interface IComponentVariables extends IBaseVariables {
-  type: 'component' | 'hoc';
+  type: 'component';
   name: string;
   test: boolean;
   hooks: string[];

@@ -5,7 +5,7 @@ import { config } from '@/config';
 import * as c from '../shared';
 
 export class ComponentTemplate extends TemplateBase implements Template {
-  getStyleImport() {
+  private getStyleImport() {
     const specifiers = [];
     const name = `./${this.vars.fileName}.${config.prefixes.style}.${config.ext.style}`;
 
@@ -16,10 +16,34 @@ export class ComponentTemplate extends TemplateBase implements Template {
     return t.importDeclaration(specifiers, t.stringLiteral(name));
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  private getJsxElement() {
+    const attributes = [];
+
+    if (config.cssModules) {
+      attributes.push(
+        t.jsxAttribute(
+          t.jsxIdentifier('className'),
+          t.jsxExpressionContainer(
+            t.memberExpression(t.identifier('styles'), t.identifier('root'))
+          )
+        )
+      );
+    }
+
+    return t.jsxElement(
+      t.jsxOpeningElement(t.jsxIdentifier('div'), attributes),
+      t.jsxClosingElement(t.jsxIdentifier('div')),
+      []
+    );
+  }
+
   generateAST() {
     const body: t.Statement[] = [];
 
-    body.push(c.importDefault('React', 'react', this.getReactImportSpecifier()));
+    body.push(
+      c.importDefault('React', 'react', this.getReactImportSpecifier())
+    );
 
     if (this.hasMod('propTypes')) {
       body.push(c.importDefault('PropTypes', 'prop-types'));
@@ -36,10 +60,14 @@ export class ComponentTemplate extends TemplateBase implements Template {
     const functionContainer = config.arrowFunction
       ? c.arrowFunctionDeclaration
       : c.regularFunctionDeclaration;
+
     const component = functionContainer(
       this.vars.componentName,
       [t.identifier('props')],
-      c.component(this.vars.componentName, c.generateHooks(this.vars.hooks))
+      [
+        ...c.generateHooks(this.vars.hooks),
+        t.returnStatement(this.getJsxElement()),
+      ]
     );
 
     if (config.exportType === 'named') {
@@ -55,7 +83,9 @@ export class ComponentTemplate extends TemplateBase implements Template {
 
     if (config.exportType === 'default') {
       body.push(t.emptyStatement());
-      body.push(t.exportDefaultDeclaration(t.identifier(this.vars.componentName)));
+      body.push(
+        t.exportDefaultDeclaration(t.identifier(this.vars.componentName))
+      );
     }
 
     return c.program(body);

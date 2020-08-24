@@ -1,18 +1,5 @@
 import * as t from '@babel/types';
 
-export const component = (componentName: string, contentStatement: t.Statement[] = []) => {
-  return [
-    ...contentStatement,
-    t.returnStatement(
-      t.jsxElement(
-        t.jsxOpeningElement(t.jsxIdentifier('div'), [], false),
-        t.jsxClosingElement(t.jsxIdentifier('div')),
-        []
-      )
-    ),
-  ];
-};
-
 export const test = (componentName: string) => {
   return t.expressionStatement(
     t.callExpression(t.identifier('describe'), [

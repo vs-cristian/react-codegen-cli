@@ -1,3 +1,4 @@
+import { config } from '@/config';
 import * as utils from '../utils';
 import { FileService } from './FileService';
 import { TemplateGenerator } from './TemplateGenerator';
@@ -43,10 +44,13 @@ export class FileGenerateManager {
     fileService.genJs(jsTemplate);
 
     if (variables.test) {
-      const testTemplate = templateGenerator.generateTemplate(ComponentTestTemplate);
+      const testTemplate = templateGenerator.generateTemplate(
+        ComponentTestTemplate
+      );
       fileService.genTest(testTemplate);
     }
 
-    fileService.genStyle('');
+    const styleTemplate = config.cssModules ? '.root {}' : '';
+    fileService.genStyle(styleTemplate);
   }
 }

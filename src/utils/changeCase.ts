@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { Logger } from '@/core/Logger';
+import { DEFAULT_CONFIG } from '@/constants';
 
 const stringCases = {
   camel: _.camelCase,
@@ -14,5 +15,13 @@ export function changeCase(name: string, strCase: keyof typeof stringCases) {
   if (caseFn) {
     return caseFn(name);
   }
-  return Logger.warn(`File name case "${strCase}" is not supported. Using default "pascal"\n`);
+
+  Logger.warn(
+    chalk =>
+      `Unsupported "fileNameCase" value "${strCase}" ${chalk.white(
+        `(using default value - ${DEFAULT_CONFIG.fileNameCase})`
+      )}`
+  );
+
+  return stringCases[DEFAULT_CONFIG.fileNameCase](name);
 }
