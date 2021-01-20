@@ -42,9 +42,13 @@ export class Logger {
   }
 
   static log(value: LoggerValue, color = 'white', icon?: string) {
-    if (typeof value === 'function') value = value(chalk);
+    if (typeof value === 'function') {
+      value = value(chalk);
+    }
 
-    if (icon) return console.log(icon, chalk[color](value));
+    if (icon) {
+      return console.log(icon, chalk[color](value));
+    }
     return console.log(chalk[color](value));
   }
 }

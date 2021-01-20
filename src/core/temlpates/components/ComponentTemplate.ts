@@ -1,10 +1,15 @@
 import * as t from '@babel/types';
 import { Template } from '@/core/TemplateGenerator';
-import { TemplateBase } from '@/core/TemplateBase';
 import { config } from '@/config';
+import { IComponentVariables } from '@/types';
+import { ComponentTemplateBase } from '../ComponentTemplateBase';
 import * as c from '../shared';
 
-export class ComponentTemplate extends TemplateBase implements Template {
+export class ComponentTemplate
+  extends ComponentTemplateBase
+  implements Template {
+  protected vars: IComponentVariables;
+
   private getStyleImport() {
     const specifiers = [];
     const name = `./${this.vars.fileName}.${config.prefixes.style}.${config.ext.style}`;

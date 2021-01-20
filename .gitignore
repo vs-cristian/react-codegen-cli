@@ -3,3 +3,6 @@ lib
 .idea
 /example/
 .vscode
+/.nyc_output/
+/coverage/
+/src/tests/e2e/tmp/

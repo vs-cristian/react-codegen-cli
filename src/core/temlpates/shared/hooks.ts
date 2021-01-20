@@ -53,7 +53,10 @@ export const useCallback = () => {
       t.callExpression(t.identifier('useCallback'), [
         t.arrowFunctionExpression(
           [],
-          t.callExpression(t.identifier('doSomething'), [t.identifier('a'), t.identifier('b')]),
+          t.callExpression(t.identifier('doSomething'), [
+            t.identifier('a'),
+            t.identifier('b'),
+          ]),
           false
         ),
         t.arrayExpression([t.identifier('a'), t.identifier('b')]),
@@ -89,10 +92,21 @@ export const useReducerInit = () => {
     [t.identifier('state'), t.identifier('action')],
     t.blockStatement(
       [
-        t.switchStatement(t.memberExpression(t.identifier('action'), t.identifier('type'), false), [
-          t.switchCase(t.stringLiteral('actionType'), [t.returnStatement(t.objectExpression([]))]),
-          t.switchCase(null, [t.throwStatement(t.newExpression(t.identifier('Error'), []))]),
-        ]),
+        t.switchStatement(
+          t.memberExpression(
+            t.identifier('action'),
+            t.identifier('type'),
+            false
+          ),
+          [
+            t.switchCase(t.stringLiteral('actionType'), [
+              t.returnStatement(t.objectExpression([])),
+            ]),
+            t.switchCase(null, [
+              t.throwStatement(t.newExpression(t.identifier('Error'), [])),
+            ]),
+          ]
+        ),
       ],
       []
     ),

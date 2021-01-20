@@ -2,9 +2,12 @@ import * as t from '@babel/types';
 import { TemplateBase } from '@/core/TemplateBase';
 import { Template } from '@/core/TemplateGenerator';
 import { config } from '@/config';
+import { IHookVariables } from '@/types';
 import * as c from '../shared';
 
 export class HookTemplate extends TemplateBase implements Template {
+  protected vars: IHookVariables;
+
   generateAST(): t.File {
     const body: t.Statement[] = [];
 
@@ -38,7 +41,9 @@ export class HookTemplate extends TemplateBase implements Template {
 
     if (config.exportType === 'default') {
       body.push(t.emptyStatement());
-      body.push(t.exportDefaultDeclaration(t.identifier(this.vars.componentName)));
+      body.push(
+        t.exportDefaultDeclaration(t.identifier(this.vars.componentName))
+      );
     }
 
     return c.program(body);

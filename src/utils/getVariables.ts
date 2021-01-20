@@ -7,10 +7,11 @@ export function getHOCVariables(data): IHOCVariables {
   name = `with_${name}`;
   name = changeCase(name, 'camel');
 
-  return Object.assign(data, {
+  return {
+    ...data,
     componentName: name,
     fileName: name,
-  });
+  };
 }
 
 export function getHookVariables(data): IHookVariables {
@@ -18,15 +19,17 @@ export function getHookVariables(data): IHookVariables {
   name = `use_${name}`;
   name = changeCase(name, 'camel');
 
-  return Object.assign(data, {
+  return {
+    ...data,
     componentName: name,
     fileName: name,
-  });
+  };
 }
 
 export function getComponentVariables(data): IComponentVariables {
-  return Object.assign(data, {
+  return {
+    ...data,
     componentName: changeCase(data.name, 'pascal'),
     fileName: changeCase(data.name, config.fileNameCase),
-  });
+  };
 }
