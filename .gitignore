@@ -1,6 +1,7 @@
 node_modules
 lib
 .idea
+.env
 /example/
 .vscode
 /.nyc_output/

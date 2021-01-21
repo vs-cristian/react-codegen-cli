@@ -3,6 +3,11 @@ jobs:
   build:
     docker:
       - image: 'circleci/node:latest'
+    filters:
+      branches:
+        only:
+          - master
+          - next
     steps:
       - checkout
       - run:
