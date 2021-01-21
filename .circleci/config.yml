@@ -21,4 +21,4 @@ jobs:
           command: npm run build
       - run:
           name: release
-          command: npm run semantic-release || true
+          command: npm run release || true
