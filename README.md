@@ -27,19 +27,6 @@
   </p>
 </p>
 
-### New features 🚀⭐
-* Added 4 new config options: 
-  * `arrowFunction` - indicates if it should generate arrow functions instead of the regular.
-  * `exportType` - export type to be used for modules.
-  * `cssModules` - generate css module instead of regular style file.
-  * `wrapFolder` - Wrap generated files in a folder.
-  
-* And 2 new CLI arguments:
-  * `-d` or` --directory` - specify directory where files are created, relative to root path.
-  * `--wrap` - does the same as the `wrapFolder` option.
-
-
-
 ## Table of Contents
 
 * [Installation](#installation)
