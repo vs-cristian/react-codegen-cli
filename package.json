@@ -12,8 +12,6 @@
   "scripts": {
     "commit": "cz",
     "test": "nyc ts-mocha --config .mocharc.js --paths -p ./tsconfig.json ./src/tests/unit/**/*.test.ts",
-    "prepublish": "yarn build",
-    "postpublish": "yarn build",
     "build": "babel src --out-dir lib --copy-files --extensions \".ts\"",
     "watch": "yarn build --watch --source-maps inline",
     "lint": "eslint src --ext .ts",
