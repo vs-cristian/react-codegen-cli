@@ -11,9 +11,10 @@ export class TemplateBase {
     this.vars = vars;
   }
 
-  protected getReactImport(): t.ImportDeclaration | null {
-    const reactImportSpecifiers = this.getReactImportSpecifiers();
-
+  // eslint-disable-next-line class-methods-use-this
+  protected getReactImport(
+    reactImportSpecifiers: t.ImportSpecifier[] = []
+  ): t.ImportDeclaration | null {
     if (config.newJsx) {
       if (reactImportSpecifiers.length) {
         return c.importNamed(reactImportSpecifiers, 'react');

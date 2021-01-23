@@ -13,7 +13,8 @@ export class HookTemplate extends TemplateBase implements Template {
   generateAST(): t.File {
     const body: t.Statement[] = [];
 
-    const reactImport = this.getReactImport();
+    const reactImportSpecifiers = this.getReactImportSpecifiers();
+    const reactImport = this.getReactImport(reactImportSpecifiers);
     if (reactImport) {
       body.push(reactImport);
     }
