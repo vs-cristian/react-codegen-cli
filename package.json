@@ -41,6 +41,8 @@
     "@babel/template": "^7.10.4",
     "@babel/traverse": "^7.11.0",
     "@babel/types": "^7.11.0",
+    "@sentry/node": "^6.0.1",
+    "@sentry/tracing": "^6.0.1",
     "chalk": "^4.1.0",
     "console-clear": "^1.1.1",
     "cosmiconfig": "^6.0.0",
