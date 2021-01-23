@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/Cristians953/react-codegen-cli/compare/v1.2.0...v1.2.1) (2021-01-23)
+
+
+### Bug Fixes
+
+* **core-template:** fix issue where component test file has unused react import specifiers ([335b1aa](https://github.com/Cristians953/react-codegen-cli/commit/335b1aa839505865e12bd4a79d9519c11d37f62b))
+
 # [1.2.0](https://github.com/Cristians953/react-codegen-cli/compare/v1.1.2...v1.2.0) (2021-01-23)
 
 
