@@ -88,6 +88,7 @@ If no config file found it will fallback to a default configuration.
 | styles       |                            string                            |      scss      | Stylesheet format                                                    |
 | typescript   |                            boolean                           |      false     | Generate typescript files                                            |
 | jsxExt       |                            boolean                           |      true      | Use `jsx` extension for components                                   |
+| newJsx       |                            boolean                           |      false     | Remove react from scope (use new JSX transform)                                  |
 | fileNameCase | came,<br/> pascal,<br/>   snake,<br/> snakeUpper,<br/> kebab |     pascal     | File name case for generated files<br/> (default: `MyComponent.jsx`) |
 | path         |                            string                            | src/components | Path to generate files
 | wrapFolder   | boolean | true | Create a wrap folder for generated files |
