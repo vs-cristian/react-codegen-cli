@@ -13,9 +13,10 @@ export class HOCTemplate extends TemplateBase implements Template {
   generateAST(): t.File {
     const body: t.Statement[] = [];
 
-    body.push(
-      c.importDefault('React', 'react', this.getReactImportSpecifier())
-    );
+    const reactImport = this.getReactImport();
+    if (reactImport) {
+      body.push(reactImport);
+    }
     body.push(t.emptyStatement());
 
     if (this.hasHook('useReducer')) {

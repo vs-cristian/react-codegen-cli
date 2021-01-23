@@ -16,7 +16,10 @@ export class ComponentTestTemplate
     const componentPath = `./${this.vars.componentName}`;
     const body: t.Statement[] = [];
 
-    body.push(c.importDefault('React', 'react'));
+    const reactImport = this.getReactImport();
+    if (reactImport) {
+      body.push(reactImport);
+    }
     body.push(
       c.importNamed([c.importSpec('render')], '@testing-library/react')
     );

@@ -13,12 +13,11 @@ export class HookTemplate extends TemplateBase implements Template {
   generateAST(): t.File {
     const body: t.Statement[] = [];
 
-    const reactImportSpecifiers = this.getReactImportSpecifier();
-
-    if (reactImportSpecifiers.length) {
-      body.push(c.importNamed(reactImportSpecifiers, 'react'));
-      body.push(t.emptyStatement());
+    const reactImport = this.getReactImport();
+    if (reactImport) {
+      body.push(reactImport);
     }
+    body.push(t.emptyStatement());
 
     if (this.hasHook('useReducer')) {
       body.push(c.useReducerInit());

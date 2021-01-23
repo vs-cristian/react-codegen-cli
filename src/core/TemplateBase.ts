@@ -1,5 +1,6 @@
 import * as t from '@babel/types';
 import { ReactHook, Variables } from '@/types';
+import { config } from '@/config';
 import * as c from './temlpates/shared';
 
 /* istanbul ignore next */
@@ -10,7 +11,19 @@ export class TemplateBase {
     this.vars = vars;
   }
 
-  protected getReactImportSpecifier(): t.ImportSpecifier[] {
+  protected getReactImport(): t.ImportDeclaration | null {
+    const reactImportSpecifiers = this.getReactImportSpecifiers();
+
+    if (config.newJsx) {
+      if (reactImportSpecifiers.length) {
+        return c.importNamed(reactImportSpecifiers, 'react');
+      }
+      return null;
+    }
+    return c.importDefault('React', 'react', reactImportSpecifiers);
+  }
+
+  protected getReactImportSpecifiers(): t.ImportSpecifier[] {
     return this.vars.hooks.map(hook => c.importSpec(hook));
   }
 

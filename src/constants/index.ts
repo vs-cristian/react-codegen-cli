@@ -8,6 +8,7 @@ export const DEFAULT_CONFIG: IConfig = {
   styles: 'scss',
   typescript: false,
   jsxExt: true,
+  newJsx: false,
   wrapFolder: true,
   fileNameCase: 'pascal',
   path: 'src/components',

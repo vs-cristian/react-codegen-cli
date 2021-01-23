@@ -14,6 +14,7 @@ export type ReactHooks = ReactHook[];
 export interface IConfig {
   styles?: StyleFormats;
   typescript?: boolean;
+  newJsx?: boolean;
   jsxExt?: boolean;
   fileNameCase?: FileNameCase;
   path: string;

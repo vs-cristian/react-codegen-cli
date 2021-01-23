@@ -26,6 +26,8 @@ export class Config implements IConfig {
 
   path: string;
 
+  newJsx: boolean;
+
   jsxExt: boolean;
 
   typescript: boolean;
@@ -57,6 +59,7 @@ export class Config implements IConfig {
     // Boolean
 
     this.jsxExt = config.jsxExt ?? this.jsxExt;
+    this.newJsx = config.newJsx ?? this.newJsx;
     this.typescript = config.typescript ?? this.typescript;
     this.wrapFolder = config.wrapFolder ?? this.wrapFolder;
     this.cssModules = config.cssModules ?? this.cssModules;
