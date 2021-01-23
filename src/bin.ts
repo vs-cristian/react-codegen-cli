@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+import 'source-map-support/register';
+
 import yargs from 'yargs';
 import { Logger } from './core/Logger';
 import { IArgs, runGenerator } from './index';
@@ -29,6 +31,7 @@ yargs
       runGenerator({ directory, wrap })
         .then(() => process.exit(0))
         .catch(err => {
+          console.log(err);
           Logger.error(err);
           process.exit(1);
         });

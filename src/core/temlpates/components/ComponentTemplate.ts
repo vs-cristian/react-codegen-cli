@@ -8,7 +8,9 @@ import * as c from '../shared';
 export class ComponentTemplate
   extends ComponentTemplateBase
   implements Template {
-  protected vars: IComponentVariables;
+  constructor(protected vars: IComponentVariables) {
+    super(vars);
+  }
 
   private getStyleImport() {
     const specifiers = [];

@@ -6,7 +6,9 @@ import { IHOCVariables } from '@/types';
 import * as c from '../shared';
 
 export class HOCTemplate extends TemplateBase implements Template {
-  protected vars: IHOCVariables;
+  constructor(protected vars: IHOCVariables) {
+    super(vars);
+  }
 
   generateAST(): t.File {
     const body: t.Statement[] = [];

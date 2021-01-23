@@ -6,7 +6,9 @@ import { IHookVariables } from '@/types';
 import * as c from '../shared';
 
 export class HookTemplate extends TemplateBase implements Template {
-  protected vars: IHookVariables;
+  constructor(protected vars: IHookVariables) {
+    super(vars);
+  }
 
   generateAST(): t.File {
     const body: t.Statement[] = [];

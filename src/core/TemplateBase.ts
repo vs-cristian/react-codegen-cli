@@ -4,7 +4,11 @@ import * as c from './temlpates/shared';
 
 /* istanbul ignore next */
 export class TemplateBase {
-  constructor(protected vars: Variables) {}
+  protected vars: Variables;
+
+  constructor(vars: Variables) {
+    this.vars = vars;
+  }
 
   protected getReactImportSpecifier(): t.ImportSpecifier[] {
     return this.vars.hooks.map(hook => c.importSpec(hook));

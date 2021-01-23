@@ -11,7 +11,12 @@ export interface IArgs {
   directory?: string;
 }
 
-export async function runGenerator(args: IArgs, data?: any) {
+type Data = {
+  type?: string;
+  answers?: object;
+};
+
+export async function runGenerator(args: IArgs, data: Data = {}) {
   const { directory, wrap } = args;
 
   let { type } = data;
