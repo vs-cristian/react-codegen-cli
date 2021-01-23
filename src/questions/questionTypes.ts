@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import { config } from '@/config';
 import * as questions from './questions';
 
-const reactHooks = [
+export const reactHooks = [
   'useState',
   'useEffect',
   'useContext',
@@ -10,15 +10,19 @@ const reactHooks = [
   'useRef',
   'useMemo',
   'useCallback',
-];
-const mods = [];
+] as const;
+export const mods = [];
 
 export function getComponentQuestions() {
   if (!config.typescript) {
     mods.push('propTypes');
   }
 
-  const val = [questions.name('Component'), questions.test(), questions.hooks(reactHooks)];
+  const val = [
+    questions.name('Component'),
+    questions.test(),
+    questions.hooks(reactHooks),
+  ];
 
   if (mods.length) {
     val.push(questions.mods(mods));

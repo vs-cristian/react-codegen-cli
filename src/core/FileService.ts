@@ -13,9 +13,24 @@ export class FileService {
 
   constructor(private fileName: string) {}
 
-  getFilePath(ext: string, type?: string) {
-    type = type ? `.${type}` : '';
-    return `${this.dirPath}/${this.fileName}${type}.${ext}`;
+  // eslint-disable-next-line class-methods-use-this
+  genFile(filePath: string, template: string, type: string) {
+    if (!fs.pathExistsSync(filePath)) {
+      fs.writeFileSync(filePath, template);
+      Logger.success(
+        chalk =>
+          `Successfully generated ${type} file ${chalk.white(
+            path.relative(APP_ROOT, filePath)
+          )}`
+      );
+    } else {
+      Logger.warn(chalk => `File already exists ${chalk.white(filePath)}`);
+    }
+  }
+
+  getFilePath(ext: string, prefix?: string) {
+    prefix = prefix ? `.${prefix}` : '';
+    return `${this.dirPath}/${this.fileName}${prefix}.${ext}`;
   }
 
   createDir() {
@@ -24,32 +39,12 @@ export class FileService {
 
   genJs(template: string) {
     const filePath = this.getFilePath(config.ext.component);
-    if (!fs.pathExistsSync(filePath)) {
-      fs.writeFileSync(filePath, template);
-      Logger.success(
-        chalk =>
-          `Successfully generated component file ${chalk.white(
-            path.relative(APP_ROOT, filePath)
-          )}`
-      );
-    } else {
-      Logger.warn(chalk => `File already exists ${chalk.white(filePath)}`);
-    }
+    this.genFile(filePath, template, 'component');
   }
 
   genStyle(template: string) {
     const filePath = this.getFilePath(config.ext.style, config.prefixes.style);
-    if (!fs.pathExistsSync(filePath)) {
-      fs.writeFileSync(filePath, template);
-      Logger.success(
-        chalk =>
-          `Successfully generated styles file ${chalk.white(
-            path.relative(APP_ROOT, filePath)
-          )}`
-      );
-    } else {
-      Logger.warn(chalk => `File already exists ${chalk.white(filePath)}`);
-    }
+    this.genFile(filePath, template, 'styles');
   }
 
   genTest(template: string) {
@@ -57,16 +52,6 @@ export class FileService {
       config.ext.component,
       config.prefixes.test
     );
-    if (!fs.pathExistsSync(filePath)) {
-      fs.writeFileSync(filePath, template);
-      Logger.success(
-        chalk =>
-          `Successfully generated test file ${chalk.white(
-            path.relative(APP_ROOT, filePath)
-          )}`
-      );
-    } else {
-      Logger.warn(chalk => `File already exists ${chalk.white(filePath)}`);
-    }
+    this.genFile(filePath, template, 'test');
   }
 }

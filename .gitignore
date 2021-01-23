@@ -1,5 +1,10 @@
 node_modules
 lib
+.DS_Store
 .idea
+.env
 /example/
 .vscode
+/.nyc_output/
+/coverage/
+/src/tests/e2e/tmp/

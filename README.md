@@ -27,19 +27,6 @@
   </p>
 </p>
 
-### New features 🚀⭐
-* Added 4 new config options: 
-  * `arrowFunction` - indicates if it should generate arrow functions instead of the regular.
-  * `exportType` - export type to be used for modules.
-  * `cssModules` - generate css module instead of regular style file.
-  * `wrapFolder` - Wrap generated files in a folder.
-  
-* And 2 new CLI arguments:
-  * `-d` or` --directory` - specify directory where files are created, relative to root path.
-  * `--wrap` - does the same as the `wrapFolder` option.
-
-
-
 ## Table of Contents
 
 * [Installation](#installation)
@@ -101,6 +88,7 @@ If no config file found it will fallback to a default configuration.
 | styles       |                            string                            |      scss      | Stylesheet format                                                    |
 | typescript   |                            boolean                           |      false     | Generate typescript files                                            |
 | jsxExt       |                            boolean                           |      true      | Use `jsx` extension for components                                   |
+| newJsx       |                            boolean                           |      false     | Remove react from scope (use new JSX transform)                                  |
 | fileNameCase | came,<br/> pascal,<br/>   snake,<br/> snakeUpper,<br/> kebab |     pascal     | File name case for generated files<br/> (default: `MyComponent.jsx`) |
 | path         |                            string                            | src/components | Path to generate files
 | wrapFolder   | boolean | true | Create a wrap folder for generated files |

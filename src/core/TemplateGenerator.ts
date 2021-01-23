@@ -1,16 +1,15 @@
 import * as t from '@babel/types';
 import generate from '@babel/generator';
 import prettier from 'prettier';
-import { IComponentVariables, IHOCVariables, IHookVariables } from '@/types';
-
-export type IVariables = IHookVariables | IHOCVariables | IComponentVariables;
+import { Variables } from '@/types';
 
 export interface Template {
   generateAST(): t.File;
 }
 
+/* istanbul ignore next */
 export class TemplateGenerator {
-  constructor(private vars: IVariables) {}
+  constructor(private vars: Variables) {}
 
   private static addEmptyLines(template) {
     return template.replace(/^\s*;$/gm, '');

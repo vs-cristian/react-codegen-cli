@@ -1,10 +1,17 @@
 import * as t from '@babel/types';
 import { Template } from '@/core/TemplateGenerator';
-import { TemplateBase } from '@/core/TemplateBase';
 import { config } from '@/config';
+import { IComponentVariables } from '@/types';
+import { ComponentTemplateBase } from '../ComponentTemplateBase';
 import * as c from '../shared';
 
-export class ComponentTemplate extends TemplateBase implements Template {
+export class ComponentTemplate
+  extends ComponentTemplateBase
+  implements Template {
+  constructor(protected vars: IComponentVariables) {
+    super(vars);
+  }
+
   private getStyleImport() {
     const specifiers = [];
     const name = `./${this.vars.fileName}.${config.prefixes.style}.${config.ext.style}`;
@@ -41,9 +48,10 @@ export class ComponentTemplate extends TemplateBase implements Template {
   generateAST() {
     const body: t.Statement[] = [];
 
-    body.push(
-      c.importDefault('React', 'react', this.getReactImportSpecifier())
-    );
+    const reactImport = this.getReactImport();
+    if (reactImport) {
+      body.push(reactImport);
+    }
 
     if (this.hasMod('propTypes')) {
       body.push(c.importDefault('PropTypes', 'prop-types'));

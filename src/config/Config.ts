@@ -26,6 +26,8 @@ export class Config implements IConfig {
 
   path: string;
 
+  newJsx: boolean;
+
   jsxExt: boolean;
 
   typescript: boolean;
@@ -42,8 +44,11 @@ export class Config implements IConfig {
 
   exportType: ExportType;
 
+  userConfig: IConfig;
+
   constructor(config: IConfig) {
-    const cfg = Object.assign(DEFAULT_CONFIG, config);
+    this.userConfig = config;
+    const cfg = { ...DEFAULT_CONFIG, ...config };
 
     this.setVariables(cfg);
     this.setFilesExtension();
@@ -54,6 +59,7 @@ export class Config implements IConfig {
     // Boolean
 
     this.jsxExt = config.jsxExt ?? this.jsxExt;
+    this.newJsx = config.newJsx ?? this.newJsx;
     this.typescript = config.typescript ?? this.typescript;
     this.wrapFolder = config.wrapFolder ?? this.wrapFolder;
     this.cssModules = config.cssModules ?? this.cssModules;
@@ -99,19 +105,18 @@ export class Config implements IConfig {
 
     // Other
 
-    this.path = path.resolve(APP_ROOT, config.path ?? DEFAULT_CONFIG.path);
+    if (!this.path || config.path) {
+      this.path = path.resolve(APP_ROOT, config.path ?? DEFAULT_CONFIG.path);
+    }
   }
 
   private setFilesExtension() {
-    let styleExt = this.styles.toLowerCase();
-    if (styleExt === 'stylus') {
-      styleExt = 'styl';
-    }
+    const styleExt = this.styles.toLowerCase();
 
     this.ext = {
       component: this.typescript ? 'tsx' : `j${this.jsxExt ? 'sx' : 's'}`,
       script: `${this.typescript ? 't' : 'j'}s`,
-      style: styleExt,
+      style: styleExt === 'stylus' ? 'styl' : styleExt,
     };
   }
 
@@ -122,9 +127,13 @@ export class Config implements IConfig {
     };
   }
 
-  public update(config: IConfig) {
+  public update(config: Partial<IConfig>) {
     this.setVariables(config);
     this.setFilesExtension();
     this.setPrefixes();
+  }
+
+  public reset() {
+    this.update({ ...DEFAULT_CONFIG, ...this.userConfig });
   }
 }

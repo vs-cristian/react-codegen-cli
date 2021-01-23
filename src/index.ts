@@ -1,6 +1,5 @@
-import inquirer from 'inquirer';
-
 import path from 'path';
+import inquirer from 'inquirer';
 import { config } from '@/config';
 import { Logger } from './core/Logger';
 import * as questionTypes from './questions/questionTypes';
@@ -12,10 +11,20 @@ export interface IArgs {
   directory?: string;
 }
 
-export async function runGenerator(args: IArgs) {
+type Data = {
+  type?: string;
+  answers?: object;
+};
+
+export async function runGenerator(args: IArgs, data: Data = {}) {
   const { directory, wrap } = args;
 
-  const { type } = await inquirer.prompt(typeQuestion as any);
+  let { type } = data;
+
+  if (!type) {
+    const res: any = await inquirer.prompt(typeQuestion as any);
+    type = res.type;
+  }
 
   process.stdout.write('\n');
 
@@ -29,24 +38,28 @@ export async function runGenerator(args: IArgs) {
 
   switch (type) {
     case 'component': {
-      const answers = await inquirer.prompt(
-        questionTypes.getComponentQuestions()
-      );
+      const answers: any =
+        data.answers ||
+        (await inquirer.prompt(questionTypes.getComponentQuestions()));
       await FileGenerateManager.generateComponent(answers);
       break;
     }
     case 'hoc': {
-      const answers = await inquirer.prompt(questionTypes.getHOCQuestions());
+      const answers: any =
+        data.answers ||
+        (await inquirer.prompt(questionTypes.getHOCQuestions()));
       await FileGenerateManager.generateHOC(answers);
       break;
     }
     case 'hook': {
-      const answers = await inquirer.prompt(questionTypes.getHookQuestions());
+      const answers: any =
+        data.answers ||
+        (await inquirer.prompt(questionTypes.getHookQuestions()));
       await FileGenerateManager.generateHook(answers);
       break;
     }
     default: {
-      Logger.error(`Unhandled type ${type}`);
+      Logger.error(`Unsupported type: ${type}`);
     }
   }
 
