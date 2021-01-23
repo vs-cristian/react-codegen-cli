@@ -16,7 +16,8 @@
     "watch": "yarn build -w",
     "lint": "eslint src --ext .ts",
     "start": "node ./lib/bin.js",
-    "release": "export $(cat .env | xargs) && semantic-release"
+    "release": "semantic-release",
+    "release:env": "export $(cat .env | xargs) && semantic-release"
   },
   "nyc": {
     "extension": [
@@ -30,7 +31,7 @@
       "src"
     ],
     "reporter": [
-      "html"
+      "json"
     ],
     "all": true
   },
