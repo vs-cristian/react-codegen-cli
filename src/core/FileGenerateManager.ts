@@ -1,5 +1,6 @@
 import { config } from '@/config';
 import { IComponentVariables, IHOCVariables, IHookVariables } from '@/types';
+import { BarrelTemplate } from '@/core/temlpates/components/BarrelTemplate';
 import * as utils from '../utils';
 import { FileService } from './FileService';
 import { TemplateGenerator } from './TemplateGenerator';
@@ -49,6 +50,11 @@ export class FileGenerateManager {
         ComponentTestTemplate
       );
       fileService.genTest(testTemplate);
+    }
+
+    if (variables.barrel) {
+      const barrelTemplate = templateGenerator.generateTemplate(BarrelTemplate);
+      fileService.genBarrel(barrelTemplate);
     }
 
     const styleTemplate = config.cssModules ? '.root {}' : '';

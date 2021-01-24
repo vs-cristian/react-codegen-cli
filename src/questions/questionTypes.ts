@@ -18,17 +18,18 @@ export function getComponentQuestions() {
     mods.push('propTypes');
   }
 
-  const val = [
+  const questionList = [
     questions.name('Component'),
     questions.test(),
+    questions.barrel(),
     questions.hooks(reactHooks),
   ];
 
   if (mods.length) {
-    val.push(questions.mods(mods));
+    questionList.push(questions.mods(mods));
   }
 
-  return val;
+  return questionList;
 }
 
 export function getHOCQuestions() {

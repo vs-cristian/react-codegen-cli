@@ -37,6 +37,11 @@ export class FileService {
     fs.mkdirpSync(this.dirPath);
   }
 
+  genBarrel(template: string) {
+    const filePath = `${this.dirPath}/index.${config.ext.component}`;
+    this.genFile(filePath, template, 'barrel');
+  }
+
   genJs(template: string) {
     const filePath = this.getFilePath(config.ext.component);
     this.genFile(filePath, template, 'component');

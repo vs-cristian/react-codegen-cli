@@ -25,6 +25,12 @@ export const name = (genType: string, endStr = ':') => ({
   validate: (str: string) => str.length > 0,
 });
 
+export const barrel = () => ({
+  type: 'confirm',
+  name: 'barrel',
+  message: 'Create a barrel file?',
+});
+
 export const test = () => ({
   type: 'confirm',
   name: 'test',

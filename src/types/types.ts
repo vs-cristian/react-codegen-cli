@@ -35,6 +35,7 @@ export interface IComponentVariables extends IBaseVariables {
   type: 'component';
   name: string;
   test: boolean;
+  barrel: boolean;
   hooks: ReactHooks;
   mods: string[];
 }
