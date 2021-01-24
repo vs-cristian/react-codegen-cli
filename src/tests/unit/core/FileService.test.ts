@@ -106,6 +106,15 @@ describe('FileService', () => {
     fileServiceMock.verify();
   });
 
+  it('should create barrel file', () => {
+    fileServiceMock
+      .expects('genFile')
+      .withExactArgs(`${dir}/index.${config.ext.component}`, '', 'barrel');
+    fileService.genBarrel('');
+
+    fileServiceMock.verify();
+  });
+
   it('should create style file', () => {
     fileServiceMock.expects('getFilePath').once().returns(dir);
     fileServiceMock.expects('genFile').withExactArgs(dir, '', 'styles');

@@ -11,12 +11,14 @@ describe('FileGenerateManager', () => {
   let generateTemplate;
   let genStyle;
   let genTest;
+  let genBarrel;
 
   beforeEach(() => {
     createDir = sinon.stub(FileService.prototype, 'createDir');
     genJs = sinon.stub(FileService.prototype, 'genJs');
     genStyle = sinon.stub(FileService.prototype, 'genStyle');
     genTest = sinon.stub(FileService.prototype, 'genTest');
+    genBarrel = sinon.stub(FileService.prototype, 'genBarrel');
     generateTemplate = sinon.stub(TG.prototype, 'generateTemplate');
   });
 
@@ -26,6 +28,7 @@ describe('FileGenerateManager', () => {
     generateTemplate.restore();
     genStyle.restore();
     genTest.restore();
+    genBarrel.restore();
   });
 
   it('should create Hook', () => {
@@ -68,6 +71,20 @@ describe('FileGenerateManager', () => {
     sinon.assert.calledOnce(genJs);
     sinon.assert.calledOnce(genStyle);
     sinon.assert.calledOnce(genTest);
+  });
+
+  it('should create Component with Barrel', () => {
+    const variables = utils.getComponentVariables({
+      name: 'api',
+      barrel: true,
+    });
+    FileGenerateManager.generateComponent(variables);
+
+    sinon.assert.calledTwice(generateTemplate);
+    sinon.assert.calledOnce(createDir);
+    sinon.assert.calledOnce(genJs);
+    sinon.assert.calledOnce(genStyle);
+    sinon.assert.calledOnce(genBarrel);
   });
 
   it('should create Component with CSS Module', () => {

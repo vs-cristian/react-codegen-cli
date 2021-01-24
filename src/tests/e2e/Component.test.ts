@@ -106,4 +106,16 @@ describe('Component', () => {
 
     await runGenerator({}, { answers, type });
   });
+
+  it('should create component: js/css/barrel/test', async () => {
+    config.update({
+      styles: 'css',
+      jsxExt: false,
+    });
+
+    answers.name = 'js/css/barrel/test';
+    answers.barrel = true;
+
+    await runGenerator({}, { answers, type });
+  });
 });
