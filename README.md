@@ -9,7 +9,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Cristians953/react-codegen-cli">
-    <img height="128" src="https://user-images.githubusercontent.com/22912150/89680591-e9418e80-d8fb-11ea-93f7-1631ea571f33.png" alt="logo" />
+    <img src="https://user-images.githubusercontent.com/22912150/105633453-583a8180-5e61-11eb-9154-8999beb965dc.png" alt="logo" />
   </a>
 
   <h1 align="center">React CodeGen CLI</h1>
