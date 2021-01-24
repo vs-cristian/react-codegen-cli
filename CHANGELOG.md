@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/Cristians953/react-codegen-cli/compare/v1.2.1...v1.3.0) (2021-01-24)
+
+
+### Features
+
+* **core-component:** add option to create barrel file for component ([fbaae28](https://github.com/Cristians953/react-codegen-cli/commit/fbaae28062ce1670a321db198fd84e4631267b50))
+
 ## [1.2.1](https://github.com/Cristians953/react-codegen-cli/compare/v1.2.0...v1.2.1) (2021-01-23)
 
 
