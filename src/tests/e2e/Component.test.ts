@@ -120,4 +120,28 @@ describe('Component', () => {
 
     await runGenerator({}, { answers, type });
   });
+
+  it('should create component: js/styled-components/barrel', async () => {
+    config.update({
+      styles: 'styled-components',
+      jsxExt: false,
+    });
+
+    answers.name = 'js/styled-components/barrel';
+    answers.barrel = true;
+
+    await runGenerator({}, { answers, type });
+  });
+
+  it('should create component: ts/styled-components/barrel', async () => {
+    config.update({
+      styles: 'styled-components',
+      typescript: true,
+    });
+
+    answers.name = 'ts/styled-components/barrel';
+    answers.barrel = true;
+
+    await runGenerator({}, { answers, type });
+  });
 });

@@ -14,9 +14,13 @@ export class ComponentTemplate
 
   private getStyleImport() {
     const specifiers = [];
-    const name = `./${this.vars.fileName}.${config.prefixes.style}.${config.ext.style}`;
+    const isStyled = config.styles === 'styled-components';
+    const ext = isStyled ? '' : `.${config.ext.style}`;
+    const name = `./${this.vars.fileName}.${config.prefixes.style}${ext}`;
 
-    if (config.cssModules) {
+    if (isStyled) {
+      specifiers.push(t.importDefaultSpecifier(t.identifier('Styled')));
+    } else if (config.cssModules) {
       specifiers.push(t.importDefaultSpecifier(t.identifier('styles')));
     }
 
@@ -25,6 +29,19 @@ export class ComponentTemplate
 
   // eslint-disable-next-line class-methods-use-this
   private getJsxElement() {
+    if (config.styles === 'styled-components') {
+      const memberExpresion = t.jsxMemberExpression(
+        t.jsxIdentifier('Styled'),
+        t.jsxIdentifier('Root')
+      );
+
+      return t.jsxElement(
+        t.jsxOpeningElement(memberExpresion, [], false),
+        t.jsxClosingElement(memberExpresion),
+        []
+      );
+    }
+
     const attributes = [];
 
     if (config.cssModules) {

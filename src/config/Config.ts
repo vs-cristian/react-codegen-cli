@@ -56,16 +56,11 @@ export class Config implements IConfig {
   }
 
   private setVariables(config) {
-    // Boolean
-
     this.jsxExt = config.jsxExt ?? this.jsxExt;
     this.newJsx = config.newJsx ?? this.newJsx;
     this.typescript = config.typescript ?? this.typescript;
     this.wrapFolder = config.wrapFolder ?? this.wrapFolder;
-    this.cssModules = config.cssModules ?? this.cssModules;
     this.arrowFunction = config.arrowFunction ?? this.arrowFunction;
-
-    // Enum
 
     this.fileNameCase = config.fileNameCase ?? this.fileNameCase;
 
@@ -108,16 +103,31 @@ export class Config implements IConfig {
     if (!this.path || config.path) {
       this.path = path.resolve(APP_ROOT, config.path ?? DEFAULT_CONFIG.path);
     }
+
+    if (this.styles !== 'styled-components') {
+      this.cssModules = config.cssModules ?? this.cssModules;
+    } else if (config.cssModules) {
+      Logger.warn(
+        chalk =>
+          `CSS Modules are incompatible with stylesheet format - ${chalk.white(
+            'styled-components'
+          )}`
+      );
+    }
   }
 
   private setFilesExtension() {
-    const styleExt = this.styles.toLowerCase();
+    const component = this.typescript ? 'tsx' : `j${this.jsxExt ? 'sx' : 's'}`;
+    const script = `${this.typescript ? 't' : 'j'}s`;
 
-    this.ext = {
-      component: this.typescript ? 'tsx' : `j${this.jsxExt ? 'sx' : 's'}`,
-      script: `${this.typescript ? 't' : 'j'}s`,
-      style: styleExt === 'stylus' ? 'styl' : styleExt,
-    };
+    let style = this.styles.toLowerCase();
+    if (style === 'styled-components') {
+      style = script;
+    } else if (style === 'stylus') {
+      style = 'styl';
+    }
+
+    this.ext = { component, script, style };
   }
 
   private setPrefixes() {

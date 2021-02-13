@@ -19,6 +19,7 @@ export const question = [
     type: 'confirm',
     name: 'cssModules',
     message: 'Use css modules?',
+    when: values => values.styles !== 'styled-components',
   },
   {
     type: 'confirm',

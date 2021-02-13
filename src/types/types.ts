@@ -1,6 +1,12 @@
 import { reactHooks } from '@/questions/questionTypes';
 
-export type StyleFormats = 'css' | 'scss' | 'sass' | 'less' | 'stylus';
+export type StyleFormats =
+  | 'css'
+  | 'scss'
+  | 'sass'
+  | 'less'
+  | 'stylus'
+  | 'styled-components';
 export type FileNameCase =
   | 'pascal'
   | 'camel'

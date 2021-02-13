@@ -1,6 +1,7 @@
 import { config } from '@/config';
 import { IComponentVariables, IHOCVariables, IHookVariables } from '@/types';
 import { BarrelTemplate } from '@/core/temlpates/components/BarrelTemplate';
+import { StyledComponentsTemplate } from '@/core/temlpates/components/StyledComponentsTemplate';
 import * as utils from '../utils';
 import { FileService } from './FileService';
 import { TemplateGenerator } from './TemplateGenerator';
@@ -57,7 +58,15 @@ export class FileGenerateManager {
       fileService.genBarrel(barrelTemplate);
     }
 
-    const styleTemplate = config.cssModules ? '.root {}' : '';
+    let styleTemplate = '';
+    if (config.styles === 'styled-components') {
+      styleTemplate = templateGenerator.generateTemplate(
+        StyledComponentsTemplate
+      );
+    } else if (config.cssModules) {
+      styleTemplate = '.root {}';
+    }
+
     fileService.genStyle(styleTemplate);
   }
 }

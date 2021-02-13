@@ -23,6 +23,7 @@ export const STYLE_FORMATS: StyleFormats[] = [
   'sass',
   'less',
   'stylus',
+  'styled-components',
 ];
 
 export const EXPORT_TYPES: ExportType[] = ['named', 'default'];
