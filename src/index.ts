@@ -29,11 +29,13 @@ export async function runGenerator(args: IArgs, data: Data = {}) {
   process.stdout.write('\n');
 
   if (directory) {
-    config.path = path.resolve(process.cwd(), directory);
+    config.update({
+      path: path.resolve(process.cwd(), directory),
+    });
   }
 
   if (wrap != null) {
-    config.wrapFolder = wrap;
+    config.update({ wrapFolder: wrap });
   }
 
   switch (type) {

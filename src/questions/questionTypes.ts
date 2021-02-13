@@ -18,12 +18,17 @@ export function getComponentQuestions() {
     mods.push('propTypes');
   }
 
-  const questionList = [
-    questions.name('Component'),
-    questions.test(),
-    questions.barrel(),
-    questions.hooks(reactHooks),
-  ];
+  const questionList = [];
+
+  questionList.push(questions.name('Component'));
+
+  questionList.push(questions.test());
+
+  if (config.wrapFolder) {
+    questionList.push(questions.barrel());
+  }
+
+  questionList.push(questions.hooks(reactHooks));
 
   if (mods.length) {
     questionList.push(questions.mods(mods));
