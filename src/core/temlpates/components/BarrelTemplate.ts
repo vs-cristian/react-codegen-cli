@@ -18,7 +18,11 @@ export class BarrelTemplate extends TemplateBase implements Template {
                 ? this.vars.componentName
                 : 'default'
             ),
-            t.identifier(this.vars.componentName)
+            t.identifier(
+              config.exportType === 'named'
+                ? this.vars.componentName
+                : 'default'
+            )
           ),
         ],
         t.stringLiteral(`./${this.vars.fileName}`)

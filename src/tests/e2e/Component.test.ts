@@ -81,7 +81,7 @@ describe('Component', () => {
     await runGenerator({}, { answers, type });
   });
 
-  it('should create component: ts/css/test (arrow/default)', async () => {
+  it('should create component: ts/css/test/barrel (arrow/default)', async () => {
     config.update({
       styles: 'css',
       typescript: true,
@@ -89,12 +89,13 @@ describe('Component', () => {
       exportType: 'default',
     });
 
-    answers.name = 'ts/css/test (arrow-fn)';
+    answers.name = 'ts/css/test/barrel (arrow-fn)';
+    answers.barrel = true;
 
     await runGenerator({}, { answers, type });
   });
 
-  it('should create component: js/css/test (arrow/exported)', async () => {
+  it('should create component: js/css/test/barrel (arrow/exported)', async () => {
     config.update({
       styles: 'css',
       arrowFunction: false,
@@ -102,7 +103,8 @@ describe('Component', () => {
       exportType: 'named',
     });
 
-    answers.name = 'js/css/test (export-named)';
+    answers.name = 'js/css/test/barrel (export-named)';
+    answers.barrel = true;
 
     await runGenerator({}, { answers, type });
   });
