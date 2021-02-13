@@ -38,7 +38,7 @@ export class FileService {
   }
 
   genBarrel(template: string) {
-    const filePath = `${this.dirPath}/index.${config.ext.component}`;
+    const filePath = `${this.dirPath}/index.${config.ext.script}`;
     this.genFile(filePath, template, 'barrel');
   }
 
